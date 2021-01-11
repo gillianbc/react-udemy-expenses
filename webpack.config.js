@@ -7,10 +7,11 @@ module.exports = {
         filename: 'bundle.js'
     },
     module: {
-        rules: [{
+        rules: [
+          {
             loader: 'babel-loader',
             test: /\.js$/,
-            exclude: /node_modules/
+            exclude: /node_modules/,
         }, {
             test: /\.s?css$/,
             use: [
@@ -18,7 +19,11 @@ module.exports = {
                 'css-loader',
                 'sass-loader'
             ]
-        }]
+        },
+            {
+                loader: 'source-map-loader',
+                test: /\.js$/
+            }]
     },
     devServer: {
         contentBase: path.join(__dirname, 'public')
