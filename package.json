@@ -9,16 +9,7 @@
     "start": "live-server public",
     "dev-server": "webpack serve --mode=development",
     "build": "webpack",
-    "build-app": "babel src/app.js --out-file=public/scripts/app.js --presets=env,react --watch",
-    "build-es6-classes1": "babel src/playground/es6-classes1.js --out-file=public/scripts/app.js --presets=env,react --watch",
-    "build-builditvisibility": "babel src/playground/build-it-visible.js --out-file=public/scripts/app.js --presets=env,react --watch",
-    "build-builditvisibility2": "babel src/playground/build-it-visible-2.js --out-file=public/scripts/app.js --presets=env,react --watch",
-    "build-letconst": "babel src/playground/es6-let-const.js --out-file=public/scripts/app.js --presets=env,react --watch",
-    "build-arrowfuncs": "babel src/playground/es6-arrow-function.js --out-file=public/scripts/app.js --presets=env,react --watch",
-    "build-arrowfuncs2": "babel src/playground/es6-arrow-function2.js --out-file=public/scripts/app.js --presets=env,react --watch",
-    "build-binding-this": "babel src/playground/binding-this.js --out-file=public/scripts/app.js --presets=env,react --watch",
-    "build-counter": "babel src/playground/counter.js --out-file=public/scripts/app.js --presets=env,react --watch",
-    "build-class-syntax": "babel src/playground/classSyntax.js --out-file=public/scripts/app.js --presets=env,react --watch"
+    "build-app": "babel src/app.js --out-file=public/scripts/app.js --presets=env,react --watch"
   },
   "dependencies": {
     "@babel/core": "^7.12.10",
@@ -33,6 +24,7 @@
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
     "react-modal": "^3.12.1",
+    "react-router-dom": "^5.2.0",
     "sass-loader": "^10.1.0",
     "style-loader": "^2.0.0",
     "validator": "^13.5.2",
@@ -40,6 +32,7 @@
     "webpack-dev-server": "^3.11.1"
   },
   "devDependencies": {
-    "webpack-cli": "^4.3.1"
+    "webpack-cli": "^4.3.1",
+    "source-map-loader": "^2.0.0"
   }
 }
