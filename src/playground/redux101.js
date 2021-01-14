@@ -15,11 +15,17 @@ const myState = (state = {count: 0 }, action) => {
 // Do NOT mutate the state.  Return a new object that represents the updated state
 const store = createStore( myState );
 
+// subscribe() is invoked every time the store changes
+// subscribe() returns a function that lets you unsubscribe
+
+const unsubscribe = store.subscribe(() => {
+    console.log(store.getState())
+})
+
 store.dispatch({ type: 'INCREMENT' })
-console.log(store.getState())
 store.dispatch({ type: 'DOUBLE' })
-console.log(store.getState())
+unsubscribe();
 store.dispatch({ type: 'SQUARE' })
-console.log(store.getState())
 store.dispatch({ type: 'RESET' })
-console.log(store.getState())
+
+console.log('All done')
