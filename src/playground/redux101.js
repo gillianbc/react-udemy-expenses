@@ -2,9 +2,12 @@ import { createStore} from "redux";
 
 // The first arg is the state and we give it an default value;  in this case an object { count: 0 }
 // The second arg is the action and needs no default
+// The action arg must have a type but can have any other properties you want
 const myState = (state = {count: 0 }, action) => {
     switch (action.type){
-        case 'INCREMENT': return { count: state.count + 1};
+        case 'INCREMENT':
+            const incrementBy = typeof action.incrementBy === 'number' ? action.incrementBy : 1;
+            return { count: state.count + incrementBy};
         case 'DOUBLE': return { count: state.count * 2};
         case 'SQUARE': return { count: state.count * state.count};
         case 'RESET': return { count: 0};
@@ -22,6 +25,8 @@ const unsubscribe = store.subscribe(() => {
     console.log(store.getState())
 })
 
+store.dispatch({ type: 'INCREMENT', incrementBy: 20 })
+store.dispatch({ type: 'INCREMENT', incrementBy: 'apple' })
 store.dispatch({ type: 'INCREMENT' })
 store.dispatch({ type: 'DOUBLE' })
 unsubscribe();
