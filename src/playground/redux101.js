@@ -8,8 +8,12 @@ const myState = (state = {count: 0 }, action) => {
         case 'INCREMENT':
             const incrementBy = typeof action.incrementBy === 'number' ? action.incrementBy : 1;
             return { count: state.count + incrementBy};
+        case 'DECREMENT':
+            const decrementBy = typeof action.decrementBy === 'number' ? action.decrementBy : 1;
+            return { count: state.count - decrementBy};
         case 'DOUBLE': return { count: state.count * 2};
         case 'SQUARE': return { count: state.count * state.count};
+        case 'SET': return { count: action.count};
         case 'RESET': return { count: 0};
         default: return state;
     }
@@ -28,7 +32,11 @@ const unsubscribe = store.subscribe(() => {
 store.dispatch({ type: 'INCREMENT', incrementBy: 20 })
 store.dispatch({ type: 'INCREMENT', incrementBy: 'apple' })
 store.dispatch({ type: 'INCREMENT' })
+store.dispatch({ type: 'DECREMENT', decrementBy: 50 })
+store.dispatch({ type: 'DECREMENT', decrementBy: 'apple' })
+store.dispatch({ type: 'DECREMENT' })
 store.dispatch({ type: 'DOUBLE' })
+store.dispatch({ type: 'SET', count: 101 })
 unsubscribe();
 store.dispatch({ type: 'SQUARE' })
 store.dispatch({ type: 'RESET' })
