@@ -25,6 +25,31 @@ devServer: {
 Better way of managing state.  Just set the webpack entry point in webpack.config.js to /src/playground/redux101.js to try it out.
 As usual, localhost:8080, but F12 view the console
 
+# Examples of Destructuring
+
+```$xslt
+//STEP1 - payload is an object (an empty object if none passed in)
+const incrementCount = (payload = {}) => ({
+    type: 'INCREMENT',
+    incrementBy: typeof payload.incrementBy === 'number' ? payload.incrementBy : 1
+})
+//STEP2 - destructure incrementBy
+const incrementCount = ({ incrementBy }) => ({
+    type: 'INCREMENT',
+    incrementBy: typeof incrementBy === 'number' ? incrementBy : 1
+})
+//STEP 3 - set a default of 1 (actually, we're no longer checking for a numeric here)
+const incrementCount = ({ incrementBy = 1 }) => ({
+    type: 'INCREMENT',
+    incrementBy: incrementBy
+})
+//STEP 4 - object shorthand
+const incrementCount = ({ incrementBy = 1 }) => ({
+    type: 'INCREMENT',
+    incrementBy
+})
+```
+
 # Progress
 Started:  29-11-2020
 
@@ -44,6 +69,6 @@ Lec 70/200 completed by => 09/01/2021
 
 Lec 80/200 completed by => 12/01/2021
 
-Lec 90/200 completed by =>
+Lec 90/200 completed by => 16/01/2021
 
 Lec 100/200 completed by =>
