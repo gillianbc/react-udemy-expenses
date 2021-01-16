@@ -69,6 +69,6 @@ Lec 70/200 completed by => 09/01/2021
 
 Lec 80/200 completed by => 12/01/2021
 
-Lec 90/200 completed by =>
+Lec 90/200 completed by => 16/01/2021
 
 Lec 100/200 completed by =>
