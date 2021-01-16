@@ -25,7 +25,7 @@ const [ coffee, , medium ] = beverage;
 
 console.log(`A nice medium cup of ${coffee} costs ${medium}`)
 
-// An array within an array
+// An array within an array.
 const cupboard = [
     ['baked beans', 'tinned tomatoes', 'sweetcorn'],
     ['spam', 'fray bentos', 'hotdogs'],
