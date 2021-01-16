@@ -4,9 +4,25 @@ import { createStore} from "redux";
 //Remember, we need the () when we're implicitly returning the response and the response is an object
 //payload = {} - we must set a default for the arg.  If we try to destructure it and it's undefined, we'll get an error.
 //Destructuring an empty object {} is fine
-const incrementCount = (payload = {}) => ({
+const incrementCount = ({ incrementBy = 1 }) => ({
     type: 'INCREMENT',
-    incrementBy: typeof payload.incrementBy === 'number' ? payload.incrementBy : 1
+    incrementBy
+})
+
+const decrementCount = ({ decrementBy = 1 }) => ({
+    type: 'DECREMENT',
+    decrementBy
+})
+
+const reset = () => ({
+    type: 'RESET'
+})
+
+// The arg doesn't have to be an object.  Objects are useful if we need to pass in multiple properties of action, but
+// a single variable works just fine too
+const set = (count) => ({
+    type: 'SET',
+    count
 })
 
 // The first arg is the state and we give it an default value;  in this case an object { count: 0 }
@@ -17,8 +33,7 @@ const myState = (state = {count: 0 }, action) => {
         case 'INCREMENT':
             return { count: state.count + action.incrementBy};
         case 'DECREMENT':
-            const decrementBy = typeof action.decrementBy === 'number' ? action.decrementBy : 1;
-            return { count: state.count - decrementBy};
+            return { count: state.count - action.decrementBy};
         case 'DOUBLE': return { count: state.count * 2};
         case 'SQUARE': return { count: state.count * state.count};
         case 'SET': return { count: action.count};
@@ -33,21 +48,12 @@ const store = createStore( myState );
 // subscribe() is invoked every time the store changes
 // subscribe() returns a function that lets you unsubscribe
 
-const unsubscribe = store.subscribe(() => {
-    console.log(store.getState())
-})
-
 // We use the action generator function
 store.dispatch(incrementCount({ incrementBy: 12 }))
-// store.dispatch({ type: 'INCREMENT', incrementBy: 'apple' })
-// store.dispatch({ type: 'INCREMENT' })
-// store.dispatch({ type: 'DECREMENT', decrementBy: 50 })
-// store.dispatch({ type: 'DECREMENT', decrementBy: 'apple' })
-// store.dispatch({ type: 'DECREMENT' })
-// store.dispatch({ type: 'DOUBLE' })
-// store.dispatch({ type: 'SET', count: 101 })
-// unsubscribe();
-// store.dispatch({ type: 'SQUARE' })
-// store.dispatch({ type: 'RESET' })
-
+store.dispatch(incrementCount({ incrementBy: 12 }))
+store.dispatch(decrementCount({ decrementBy: 3 }))
+store.dispatch({ type: 'SQUARE' })
+store.dispatch({ type: 'DOUBLE' })
+store.dispatch(set(103))
+store.dispatch(reset())
 console.log('All done')
