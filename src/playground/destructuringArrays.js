@@ -14,7 +14,7 @@ let [ , city, , zip ] = address;
 console.log(`The town is ${city} and the postcode is ${zip}`)//The town is Sheffield and the postcode is S2 8YT
 
 let blankAddress = [];
-// You can set default values
+// You can set DEFAULT values
 [ , city = 'Milton Keynes', , zip ] = blankAddress;
 
 console.log(`The town is ${city} and the postcode is ${zip}`)//The town is Milton Keynes and the postcode is undefined
@@ -25,3 +25,13 @@ const [ coffee, , medium ] = beverage;
 
 console.log(`A nice medium cup of ${coffee} costs ${medium}`)
 
+// An array within an array.
+const cupboard = [
+    ['baked beans', 'tinned tomatoes', 'sweetcorn'],
+    ['spam', 'fray bentos', 'hotdogs'],
+    ['custard', 'jelly', 'peaches']
+]
+
+const [ [ , toms ], [ , , sausages], [ , , fruit]] = cupboard;
+
+console.log(` Dinner tonight is ${toms} and ${sausages} and for dessert we have ${fruit}`)
