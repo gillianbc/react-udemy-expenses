@@ -1,10 +1,30 @@
 import { createStore, combineReducers} from "redux";
+import { v4 as uuid  } from 'uuid';
+
+// ADD EXPENSE - action generator function
+// Remember, () must surround an implicitly returned object
+// The arg passed in will be the expense object
+// We set a default for the arg passed in of {}
+// For each property we destructure, we set its default
+const addExpense = ( { description = '', note = '', amount = 0, createdAt = 0 } = {}) => ({
+    type: 'ADD_EXPENSE',
+    expense: {
+        id: uuid,
+        description,
+        note,
+        amount,
+        createdAt
+    }
+})
 
 const expensesReducerDefaultState = [];
 
 //  ======  Reducer for expenses
 const expensesReducer = (state = expensesReducerDefaultState, action) => {
     switch (action.type) {
+        case 'ADD_EXPENSE':
+            console.log('Adding expense ', action.expense)
+            return state.concat(action.expense)
         default:
             return state;
     }
@@ -36,7 +56,12 @@ const store = createStore(
     })
 )
 
-console.log('Current state is ', store.getState());
+store.subscribe(() => {
+    console.log('Current state is ', store.getState());
+    console.log(store.getState().expenses)
+})
+
+store.dispatch(addExpense( { description: 'Rent February', note: 'Paid late', amount: 60000}));
 
 const demoState = {
     expenses: [

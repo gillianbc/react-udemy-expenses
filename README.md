@@ -34,7 +34,8 @@ The reducer is a pure function that implements the change in state based on:
 - does not need any info other than that passed in
 - does not mutate anything external, just returns something
 
-Do not mutate the state or the action.  Just read from them and return a new object that represents the current state
+Do not mutate the state or the action.  Just read from them and return a new object that represents the current state.
+For an array, don't use `state.push(something)` use `state.concat(something)` which will return a new array
 
 IMHO, the reducer is similar to a resolver in graphql and the actions are like the queries and mutations defined in the schema.
 
