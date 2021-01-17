@@ -28,7 +28,7 @@ const set = (count) => ({
 // The first arg is the state and we give it an default value;  in this case an object { count: 0 }
 // The second arg is the action and needs no default
 // The action arg must have a type property but can have any other properties you want
-const myState = (state = {count: 0 }, action) => {
+const countReducer = (state = {count: 0 }, action) => {
     switch (action.type){
         case 'INCREMENT':
             return { count: state.count + action.incrementBy};
@@ -43,7 +43,7 @@ const myState = (state = {count: 0 }, action) => {
 }
 // We have to pass a function into createStore and the function is immediately invoked
 // Do NOT mutate the state.  Return a new object that represents the updated state
-const store = createStore( myState );
+const store = createStore( countReducer );
 
 // subscribe() is invoked every time the store changes
 // subscribe() returns a function that lets you unsubscribe

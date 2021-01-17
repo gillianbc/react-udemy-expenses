@@ -20,10 +20,21 @@ devServer: {
     historyApiFallback: true
 }
 ```
-
 # Redux
 Better way of managing state.  Just set the webpack entry point in webpack.config.js to /src/playground/redux101.js to try it out.
 As usual, localhost:8080, but F12 view the console
+
+# Actions and Reducers
+The action is an object that invokes a change in state.
+The reducer is a pure function that implements the change in state based on:
+- the action passed in
+- the previous state
+
+*Pure*
+- does not need any info other than that passed in
+- does not mutate anything external, just returns something
+
+Do not mutate the state or the action.  Just read from them and return a new object that represents the current state
 
 # Examples of Destructuring
 
