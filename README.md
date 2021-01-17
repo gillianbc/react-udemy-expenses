@@ -36,6 +36,8 @@ The reducer is a pure function that implements the change in state based on:
 
 Do not mutate the state or the action.  Just read from them and return a new object that represents the current state
 
+IMHO, the reducer is similar to a resolver in graphql and the actions are like the queries and mutations defined in the schema.
+
 # Examples of Destructuring
 
 ```$xslt
