@@ -1,5 +1,5 @@
 import { createStore, combineReducers} from "redux";
-import { v4 as uuid  } from 'uuid';
+import { v1 as uuid  } from 'uuid';
 
 // ADD EXPENSE - action generator function
 // Remember, () must surround an implicitly returned object
@@ -9,7 +9,7 @@ import { v4 as uuid  } from 'uuid';
 const addExpense = ( { description = '', note = '', amount = 0, createdAt = 0 } = {}) => ({
     type: 'ADD_EXPENSE',
     expense: {
-        id: uuid,
+        id: uuid(),
         description,
         note,
         amount,
@@ -17,14 +17,24 @@ const addExpense = ( { description = '', note = '', amount = 0, createdAt = 0 } 
     }
 })
 
+const removeExpense = ( { id }) => ({
+    type: 'REMOVE_EXPENSE',
+    id
+})
+
 const expensesReducerDefaultState = [];
 
 //  ======  Reducer for expenses
+// So state here is the array of expenses, not the whole application state
+// I would have named it expenses, but the tutor didn't, so maybe that's the convention
 const expensesReducer = (state = expensesReducerDefaultState, action) => {
     switch (action.type) {
         case 'ADD_EXPENSE':
             console.log('Adding expense ', action.expense)
-            return state.concat(action.expense)
+            return [...state, action.expense ]    // alternatively, we could return state.concat(action.expense)
+        case 'REMOVE_EXPENSE':
+            console.log('Removing expense ', action.id)
+            return state.filter(({id}) =>  id !== action.id )
         default:
             return state;
     }
@@ -58,12 +68,13 @@ const store = createStore(
 
 store.subscribe(() => {
     console.log('Current state is ', store.getState());
-    console.log(store.getState().expenses)
 })
 
 store.dispatch(addExpense( { description: 'Rent February', note: 'Paid late', amount: 60000}));
+const waterBillId = store.dispatch(addExpense( { description: 'Water Bill February', note: 'Paid on time', amount: 2700})).expense.id;
+store.dispatch(removeExpense( { id: waterBillId}));
 
-const demoState = {
+const demoAppState = {
     expenses: [
         {
             id: 'shfkah',
