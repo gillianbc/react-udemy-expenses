@@ -1,10 +1,40 @@
 import { createStore, combineReducers} from "redux";
+import { v1 as uuid  } from 'uuid';
+
+// ADD EXPENSE - action generator function
+// Remember, () must surround an implicitly returned object
+// The arg passed in will be the expense object
+// We set a default for the arg passed in of {}
+// For each property we destructure, we set its default
+const addExpense = ( { description = '', note = '', amount = 0, createdAt = 0 } = {}) => ({
+    type: 'ADD_EXPENSE',
+    expense: {
+        id: uuid(),
+        description,
+        note,
+        amount,
+        createdAt
+    }
+})
+
+const removeExpense = ( { id }) => ({
+    type: 'REMOVE_EXPENSE',
+    id
+})
 
 const expensesReducerDefaultState = [];
 
 //  ======  Reducer for expenses
+// So state here is the array of expenses, not the whole application state
+// I would have named it expenses, but the tutor didn't, so maybe that's the convention
 const expensesReducer = (state = expensesReducerDefaultState, action) => {
     switch (action.type) {
+        case 'ADD_EXPENSE':
+            console.log('Adding expense ', action.expense)
+            return [...state, action.expense ]    // alternatively, we could return state.concat(action.expense)
+        case 'REMOVE_EXPENSE':
+            console.log('Removing expense ', action.id)
+            return state.filter(({id}) =>  id !== action.id )
         default:
             return state;
     }
@@ -36,9 +66,15 @@ const store = createStore(
     })
 )
 
-console.log('Current state is ', store.getState());
+store.subscribe(() => {
+    console.log('Current state is ', store.getState());
+})
 
-const demoState = {
+store.dispatch(addExpense( { description: 'Rent February', note: 'Paid late', amount: 60000}));
+const waterBillId = store.dispatch(addExpense( { description: 'Water Bill February', note: 'Paid on time', amount: 2700})).expense.id;
+store.dispatch(removeExpense( { id: waterBillId}));
+
+const demoAppState = {
     expenses: [
         {
             id: 'shfkah',
