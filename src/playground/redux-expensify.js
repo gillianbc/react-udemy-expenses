@@ -64,6 +64,24 @@ const setTextFilter = (textFilter = '') => ({
     textFilter
 })
 
+const sortByAmount = () => ({
+    type: 'SORT_BY_AMOUNT'
+})
+
+const sortByDate = () => ({
+    type: 'SORT_BY_DATE'
+})
+
+const setStartDate = (date) => ({
+    type: 'SET_START_DATE',
+    date
+})
+
+const setEndDate = (date) => ({
+    type: 'SET_END_DATE',
+    date
+})
+
 // This is effectively the schema for the filters.
 const filtersDefaultState = {
     text: '',
@@ -78,6 +96,26 @@ const filtersReducer = (state = filtersDefaultState, action) => {
             return {
                 ...state,
                 text: action.textFilter
+            }
+        case 'SORT_BY_AMOUNT':
+            return {
+                ...state,
+                sortBy: 'amount'
+            }
+        case 'SORT_BY_DATE':
+            return {
+                ...state,
+                sortBy: 'date'
+            }
+        case 'SET_START_DATE':
+            return {
+                ...state,
+                startDate: action.date
+            }
+        case 'SET_END_DATE':
+            return {
+                ...state,
+                endDate: action.date
             }
         default:
             return state;
@@ -110,6 +148,11 @@ store.dispatch(editExpense(expenseThree.expense.id, { description: 'Gas bill', a
 store.dispatch(setTextFilter('Rent'));
 store.dispatch(setTextFilter('Bill'));
 store.dispatch(setTextFilter());
+store.dispatch(sortByAmount());
+store.dispatch(sortByDate());
+store.dispatch(setStartDate(125));
+store.dispatch(setStartDate());
+store.dispatch(setEndDate(156));
 
 
 //SCRAP PAPER
