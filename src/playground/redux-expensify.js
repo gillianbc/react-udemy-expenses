@@ -134,13 +134,32 @@ const store = createStore(
     })
 )
 
+// if a startDate filter is Nan, then valid match on date is set as true
+// if the expense createdAt is on or after the startDate filter, it's a match
+const getVisibleExpenses = (expenses, { startDate, endDate, text, sortBy}) => {
+    console.log('Calculating visible', startDate, endDate, text, sortBy)
+    console.log(text.toLowerCase())
+    return expenses.filter((expense) => {
+        const startDateMatch = typeof startDate !== 'number' || expense.createdAt >= startDate
+        const endDateMatch = typeof endDate !== 'number' || expense.createdAt <= endDate
+        const textMatch = !text || expense.description.toLowerCase().includes(text.toLowerCase())
+        return startDateMatch && endDateMatch && textMatch;
+    })
+}
+
 store.subscribe(() => {
-    console.log('Current state is ', store.getState());
+    const state = store.getState();
+    console.log('Current state is ', state);
+    const visibleExpenses = getVisibleExpenses(state.expenses, state.filters);
+    console.log('Visible expenses are: ', visibleExpenses)
 })
 
-const expenseOne = store.dispatch(addExpense( { description: 'Rent February', note: 'Paid late', amount: 60000}));
-const expenseTwo = store.dispatch(addExpense( { description: 'Water Bill February', note: 'Paid on time', amount: 2700}));
-const expenseThree = store.dispatch(addExpense( { description: 'Rent March', note: 'Paid late', amount: 75200}));
+const expenseOne = store.dispatch(addExpense( { description: 'Rent February', note: 'Paid late', amount: 60000, createdAt: 157}));
+const expenseTwo = store.dispatch(addExpense( { description: 'Water Bill February', note: 'Paid on time', amount: 2700, createdAt: 160}));
+const expenseThree = store.dispatch(addExpense( { description: 'Rent March', note: 'Paid late', amount: 75200, createdAt: 159}));
+const expenseFour = store.dispatch(addExpense( { description: 'Netflix', amount: 799, createdAt: 160}));
+
+store.dispatch(addExpense( { description: 'Rent April', note: 'Paid late', amount: 75200, createdAt: 159}));
 
 store.dispatch(removeExpense( { id: expenseTwo.expense.id}));
 store.dispatch(editExpense(expenseOne.expense.id, { amount: 20000}));
@@ -151,8 +170,9 @@ store.dispatch(setTextFilter());
 store.dispatch(sortByAmount());
 store.dispatch(sortByDate());
 store.dispatch(setStartDate(125));
-store.dispatch(setStartDate());
-store.dispatch(setEndDate(156));
+store.dispatch(setStartDate(158));
+store.dispatch(setEndDate(160));
+store.dispatch(setTextFilter('Rent'))
 
 
 //SCRAP PAPER
