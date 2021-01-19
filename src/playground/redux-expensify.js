@@ -22,6 +22,13 @@ const removeExpense = ( { id }) => ({
     id
 })
 
+const editExpense = (id, updateData ) => ({
+    type: 'EDIT_EXPENSE',
+    id,
+    updateData
+})
+
+// This is effectively the schema for the expenses.
 const expensesReducerDefaultState = [];
 
 //  ======  Reducer for expenses
@@ -35,11 +42,29 @@ const expensesReducer = (state = expensesReducerDefaultState, action) => {
         case 'REMOVE_EXPENSE':
             console.log('Removing expense ', action.id)
             return state.filter(({id}) =>  id !== action.id )
+        case 'EDIT_EXPENSE':
+            console.log('Editing expense', action.id, action.updateData)
+            return state.map((expense) => {
+                if (expense.id === action.id){
+                    return {
+                        ...expense,
+                        ...action.updateData
+                    }
+                } else {
+                    return expense;
+                }
+            })
         default:
             return state;
     }
 }
 
+const setTextFilter = (textFilter = '') => ({
+    type: 'SET_TEXT_FILTER',
+    textFilter
+})
+
+// This is effectively the schema for the filters.
 const filtersDefaultState = {
     text: '',
     sortBy: 'date',
@@ -49,6 +74,11 @@ const filtersDefaultState = {
 
 const filtersReducer = (state = filtersDefaultState, action) => {
     switch (action.type) {
+        case 'SET_TEXT_FILTER':
+            return {
+                ...state,
+                text: action.textFilter
+            }
         default:
             return state;
     }
@@ -70,9 +100,28 @@ store.subscribe(() => {
     console.log('Current state is ', store.getState());
 })
 
-store.dispatch(addExpense( { description: 'Rent February', note: 'Paid late', amount: 60000}));
-const waterBillId = store.dispatch(addExpense( { description: 'Water Bill February', note: 'Paid on time', amount: 2700})).expense.id;
-store.dispatch(removeExpense( { id: waterBillId}));
+const expenseOne = store.dispatch(addExpense( { description: 'Rent February', note: 'Paid late', amount: 60000}));
+const expenseTwo = store.dispatch(addExpense( { description: 'Water Bill February', note: 'Paid on time', amount: 2700}));
+const expenseThree = store.dispatch(addExpense( { description: 'Rent March', note: 'Paid late', amount: 75200}));
+
+store.dispatch(removeExpense( { id: expenseTwo.expense.id}));
+store.dispatch(editExpense(expenseOne.expense.id, { amount: 20000}));
+store.dispatch(editExpense(expenseThree.expense.id, { description: 'Gas bill', amount: 120000}));
+store.dispatch(setTextFilter('Rent'));
+store.dispatch(setTextFilter('Bill'));
+store.dispatch(setTextFilter());
+
+
+//SCRAP PAPER
+const user = {
+    name: 'Jen',
+    age: 12
+}
+const user2 = {
+    age: 67
+}
+const person = { ...user, ...user2}
+console.log(person)
 
 const demoAppState = {
     expenses: [

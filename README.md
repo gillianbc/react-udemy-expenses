@@ -63,6 +63,24 @@ const incrementCount = ({ incrementBy = 1 }) => ({
     incrementBy
 })
 ```
+# Notes
+You can use the ...spread operator for arrays, but to use the ...spread operator for objects, you need to let Babel know via plugin babel-plugin-transform-object-rest-spread
+
+# Creating an Action Generator
+```$xslt
+// It's a function
+const editExpense = () => { return xxxxx }
+// For a simple action generator, we want to implicitly return the response so we drop the {}
+const editExpense = () => xxxxx
+// The response will be an object, so we add the {} but don't forget the extra brackets
+// It will have a type property, plus whatever else you need.  Remember to set a default if you need one
+const editExpense = (something = 0) => ({
+    type: 'EDIT_EXPENSE'
+    something
+})
+
+// When using the generated action, you will have action.type and action.something
+```
 
 # Progress
 Started:  29-11-2020
