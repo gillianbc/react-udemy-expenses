@@ -151,6 +151,7 @@ store.dispatch(setTextFilter());
 store.dispatch(sortByAmount());
 store.dispatch(sortByDate());
 store.dispatch(setStartDate(125));
+store.dispatch(setStartDate());
 store.dispatch(setEndDate(156));
 
 
