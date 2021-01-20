@@ -136,6 +136,7 @@ const store = createStore(
 
 // if a startDate filter is Nan, then valid match on date is set as true
 // if the expense createdAt is on or after the startDate filter, it's a match
+// The filtered expenses are an array so we can chain to Array.prototype.sort
 const getVisibleExpenses = (expenses, { startDate, endDate, text, sortBy}) => {
     console.log('Calculating visible', startDate, endDate, text, sortBy)
     console.log(text.toLowerCase())
@@ -144,6 +145,13 @@ const getVisibleExpenses = (expenses, { startDate, endDate, text, sortBy}) => {
         const endDateMatch = typeof endDate !== 'number' || expense.createdAt <= endDate
         const textMatch = !text || expense.description.toLowerCase().includes(text.toLowerCase())
         return startDateMatch && endDateMatch && textMatch;
+    }).sort((a, b) => {
+        if (sortBy === 'date'){
+            return a.createdAt < b.createdAt ? 1 : -1
+        }
+        if (sortBy === 'amount'){
+            return a.amount < b.amount ? 1 : -1
+        }
     })
 }
 
@@ -158,21 +166,20 @@ const expenseOne = store.dispatch(addExpense( { description: 'Rent February', no
 const expenseTwo = store.dispatch(addExpense( { description: 'Water Bill February', note: 'Paid on time', amount: 2700, createdAt: 160}));
 const expenseThree = store.dispatch(addExpense( { description: 'Rent March', note: 'Paid late', amount: 75200, createdAt: 159}));
 const expenseFour = store.dispatch(addExpense( { description: 'Netflix', amount: 799, createdAt: 160}));
-
 store.dispatch(addExpense( { description: 'Rent April', note: 'Paid late', amount: 75200, createdAt: 159}));
-
-store.dispatch(removeExpense( { id: expenseTwo.expense.id}));
+// store.dispatch(removeExpense( { id: expenseTwo.expense.id}));
 store.dispatch(editExpense(expenseOne.expense.id, { amount: 20000}));
 store.dispatch(editExpense(expenseThree.expense.id, { description: 'Gas bill', amount: 120000}));
 store.dispatch(setTextFilter('Rent'));
 store.dispatch(setTextFilter('Bill'));
 store.dispatch(setTextFilter());
-store.dispatch(sortByAmount());
+
 store.dispatch(sortByDate());
+store.dispatch(sortByAmount());
 store.dispatch(setStartDate(125));
 store.dispatch(setStartDate(158));
 store.dispatch(setEndDate(160));
-store.dispatch(setTextFilter('Rent'))
+// store.dispatch(setTextFilter('Rent'))
 
 
 //SCRAP PAPER
