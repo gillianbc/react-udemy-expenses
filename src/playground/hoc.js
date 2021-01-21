@@ -13,6 +13,7 @@ const Info = (props) => (
     <div>
         <h2> Information from the Wrapped Component</h2>
         <p> This is a props value that's been passed down: {props.info}</p>
+        <p> I can also access the day prop: {props.day}</p>
     </div>
 )
 
@@ -21,12 +22,27 @@ const Info = (props) => (
 const withAdminWarning = (WrappedComponent) => {
     return (props) => (
         <div>
-            <h1>The information here is from the Higher Order Component</h1>
+            {props.isAdmin && <h1>The information here is from the Higher Order Component and the day prop is: {props.day}</h1>}
             <WrappedComponent {...props}/>
         </div>
     )
 }
 
-const AdminInfo = withAdminWarning(Info)
+const requireAuthentication = (WrappedComponent) => {
+    return (props) => (
+        <div>
+            {props.isAuthenticated
+                ? <WrappedComponent {...props}/>
+                : <div><h1>You are not authenticated. Please log in</h1></div>
+            }
+        </div>
+    )
+}
 
-ReactDOM.render(<AdminInfo info="pineapple"/>, document.getElementById('app'))
+const AdminInfo = withAdminWarning(Info)
+const AuthenticatedInfo = requireAuthentication(Info)
+
+// ReactDOM.render(<AdminInfo isAdmin={true} day="Thurs" info="pineapple"/>, document.getElementById('app'))
+
+// Just change isAuthenticated below to true / false to see the effect
+ReactDOM.render(<AuthenticatedInfo isAuthenticated={false} day="Monday" info="banana"/>, document.getElementById('app'))
