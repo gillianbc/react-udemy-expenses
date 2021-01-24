@@ -1,5 +1,6 @@
 import React from 'react'
 import {connect} from "react-redux";
+import {ExpensesListItem} from "./ExpensesListItem";
 
 const ExpenseList = (props) => (
     <div>
@@ -7,6 +8,12 @@ const ExpenseList = (props) => (
         <p>My name is {props.gillian}</p>
         <p>{props.expenses[0].amount}</p>
         <p>The text filter from the state is: {props.filters.text}</p>
+        {props.expenses.map((expense) => {
+            // When we map the array of expenses, each row is an object
+            console.log('Processing in map', expense)
+            //Send across an object consisting of each field of the expense object
+            return <ExpensesListItem key={expense.id} {...expense}/>
+        })}
     </div>
 )
 
