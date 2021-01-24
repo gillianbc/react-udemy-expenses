@@ -9,10 +9,13 @@ import {getVisibleExpenses, getAllExpenses} from './selectors/expenses'
 import {addExpense} from "./actions/expenses";
 import {setTextFilter} from "./actions/filters";
 
+
 const visibleExpenses = () => {
     const state = store.getState()
     return getVisibleExpenses(state.expenses, state.filters)
 }
+
+
 
 const allExpenses = () => {
     const state = store.getState()
@@ -24,8 +27,8 @@ store.dispatch(addExpense( { description: 'Water bill', note: 'Paid late', amoun
 store.dispatch(addExpense( { description: 'Phone bill', note: 'Paid late', amount: 75200, createdAt: 179}));
 store.dispatch(setTextFilter('gas'));
 
-console.log(visibleExpenses())
-console.log(allExpenses())
+// console.log(visibleExpenses())
+// console.log(allExpenses())
 
 const jsx = (
     <Provider store = {store}>
