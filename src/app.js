@@ -27,6 +27,14 @@ store.dispatch(addExpense( { description: 'Water bill', note: 'Paid late', amoun
 store.dispatch(addExpense( { description: 'Phone bill', note: 'Paid late', amount: 75200, createdAt: 179}));
 store.dispatch(setTextFilter('gas'));
 
+setTimeout(() => {
+    store.dispatch(setTextFilter('water'));
+}, 3000)
+
+setTimeout(() => {
+    store.dispatch(setTextFilter('bill'));
+}, 6000)
+
 // console.log(visibleExpenses())
 // console.log(allExpenses())
 

@@ -6,6 +6,7 @@ const ExpenseList = (props) => (
         <h1>This is my Expense List</h1>
         <p>My name is {props.gillian}</p>
         <p>{props.expenses[0].amount}</p>
+        <p>The text filter from the state is: {props.filters.text}</p>
     </div>
 )
 
@@ -15,7 +16,8 @@ const mapStateToProps = (state) => {
     console.log('Expenses === ', state.expenses)
     return {
         expenses: state.expenses,
-        gillian: 'Mrs Bladen-Clark'
+        gillian: 'Mrs Bladen-Clark',
+        filters: state.filters
     }
 }
 
