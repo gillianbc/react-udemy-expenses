@@ -1,6 +1,10 @@
 // Stateless functional component
 import React from "react";
+import MyExpenses from "./ExpenseList";
 
-const ExpenseDashboardPage = () => ( <div>This is the dashboard</div> )
+const ExpenseDashboardPage = () => (
+    <div>
+        <MyExpenses />
+    </div> )
 
 export default ExpenseDashboardPage
