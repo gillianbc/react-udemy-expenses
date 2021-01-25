@@ -18,7 +18,7 @@ const ExpenseList = (props) => (
     </div>
 )
 
-// This is just a function that returns an object of the things we may want to use
+// This is just a function that returns an object of the things we may want to use that are in our application's state
 // Note: declare it before we need to use it
 const mapStateToProps = (state) => {
     console.log('Expenses === ', state.expenses)
