@@ -12,8 +12,20 @@ const ExpenseList = (props) => (
         {props.expenses.map((expense) => {
             // When we map the array of expenses, each row is an object
             console.log('Processing in map', expense)
-            //Send across an object consisting of each field of the expense object
-            return <ExpensesListItem key={expense.id} {...expense}/>
+            // Send across an object consisting of each field of the expense object
+             return <ExpensesListItem key={expense.id} {...expense}/>
+            // The above sends across key and each items of expense to props (or whatever we decide to call the args object)
+            // { id: "jskldjkla", amount: 1888 } etc
+            // We can then destructure
+            // Note that key is not one of the ordinary props - it's a special keyword for React to use for array row handling
+            // Alternately, I could have done:
+            // return <ExpensesListItem key={expense.id} expense={expense}/>
+            // The above sends across
+            // { expense: {id: "jskldjkla", amount: 1888 } } etc
+            // Alternately, I could have done this which is the preferred form when only a few properties as it's
+            // explicit and you only pass what you need:
+            //return <ExpensesListItem key={expense.id}  amount={expense.amount} description={expense.description}/>
+            // Remember that the {} here are not object brackets, they are so we can write JS within the JSX
         })}
     </div>
 )

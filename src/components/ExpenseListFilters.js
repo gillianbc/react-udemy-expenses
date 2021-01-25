@@ -5,7 +5,6 @@ import {setTextFilter} from "../actions/filters";
 const ExpenseListFilters = ( props ) => (
     <div>
         <input type="text" value={props.filters.text} onChange={ (e) => {
-            console.log("HELLO", e.target.value)
             props.dispatch(setTextFilter(e.target.value))
         }}/>
     </div>
