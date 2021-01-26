@@ -30,7 +30,7 @@ store.dispatch(setTextFilter('gas'));
 
 setTimeout(() => {
     store.dispatch(setTextFilter('water'));
-}, 3000)
+}, 2000)
 
 setTimeout(() => {
     store.dispatch(setTextFilter('bill'));

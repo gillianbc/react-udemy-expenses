@@ -1,7 +1,8 @@
 import React from 'react';
 import {connect} from "react-redux";
 import {setTextFilter, sortByAmount, sortByDate} from "../actions/filters";
-
+// These are what's known as a 'controlled input'
+// The value is read from the state and we use JS to update the state
 const ExpenseListFilters = ( props ) => (
     <div>
         <input type="text" value={props.filters.text} onChange={ (e) => {
