@@ -25,6 +25,7 @@ const allExpenses = () => {
 store.dispatch(addExpense( { description: 'Gas bill', note: 'Paid late', amount: 12200, createdAt: 178}));
 store.dispatch(addExpense( { description: 'Water bill', note: 'Paid late', amount: 999, createdAt: 180}));
 store.dispatch(addExpense( { description: 'Phone bill', note: 'Paid late', amount: 75200, createdAt: 179}));
+store.dispatch(addExpense( { description: 'Mortgage', note: 'Paid on time', amount: 25400, createdAt: 157}));
 store.dispatch(setTextFilter('gas'));
 
 setTimeout(() => {
