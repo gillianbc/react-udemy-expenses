@@ -81,6 +81,49 @@ const editExpense = (something = 0) => ({
 
 // When using the generated action, you will have action.type and action.something
 ```
+# Setting State By Function or Object
+Use a function. Read this for why https://www.freecodecamp.org/news/functional-setstate-is-the-future-of-react-374f30401b6b/
+
+```
+const description = e.target.value
+this.setState( () => ({ description }))
+```
+
+Passing an object like so will work, but don't do it
+
+```
+const description = e.target.value
+this.setState({ description })
+```
+
+You can also use e.target.value directly, without an intermediate variable, but as it's a callback function, you will get React errors if you use e.target.value in a function that's mutating it.
+So you need to persist it first
+
+```
+e.persist()
+this.setState( () => ({ description: e.target.value }))
+```
+
+# Regex
+Can use a regex in the string match() function - but enclose the regex in a pair of escape chars `/  /`
+
+## Currency - 2 optional decimal places
+`^\d*(\.)?(\d{0,2})?$`
+
+`^d`  starts with a digit
+
+`*`  multiple digits
+
+`(\.)?`  optional group consisting of a dot
+
+`(\d{0,2})?`  optional group consisting of 0 to 2 digits
+
+`$` the end - no more characters
+
+Or...
+`^\d*(\.\d{0,2})?$` - Same as before but..
+
+`(\.\d{0,2})?`  optional group consisting of a dot and of 0 to 2 digits 
 
 # Progress
 Started:  29-11-2020
