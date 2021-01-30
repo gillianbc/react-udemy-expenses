@@ -1,9 +1,17 @@
 import React, {Component} from 'react';
+import moment from "moment";
+import {SingleDatePicker} from 'react-dates'
+import 'react-dates/lib/css/_datepicker.css'
+
+const now = moment();
+console.log('Date is ', now.format('dddd Do of MMMM DD-MMM-YYYY'))
+
+moment.locale('en_GB');
 
 class ExpenseForm extends Component {
     onChangeDescription = (e) => {
         const description  = e.target.value
-        // Andrew used a function - read this for why https://www.freecodecamp.org/news/functional-setstate-is-the-future-of-react-374f30401b6b/
+        // Andrew uses a function for all set state operations - read this for why https://www.freecodecamp.org/news/functional-setstate-is-the-future-of-react-374f30401b6b/
         this.setState( () => ({ description }))
         // Passing an object like so will work, but don't do it
         // this.setState({ description })
@@ -19,10 +27,18 @@ class ExpenseForm extends Component {
             this.setState(() => ({ amount }))
         }
     }
+    onChangeDate = (createdAt) => {
+        this.setState(() => ({createdAt}))
+    }
+    onChangeCalendarFocus = ({focused}) => {
+        this.setState(() => ({ calendarFocused: focused }))
+    }
     state = {
         description: '',
         note: '',
-        amount: '0.00'
+        amount: '0.00',
+        createdAt: moment(),
+        calendarFocused: false
     }
     render() {
         return (
@@ -40,6 +56,14 @@ class ExpenseForm extends Component {
                         placeholder="Amount"
                         value = {this.state.amount}
                         onChange = {this.onChangeAmount}
+                    />
+                    <SingleDatePicker
+                        date={this.state.createdAt}
+                        onDateChange={this.onChangeDate}
+                        focused={this.state.calendarFocused}
+                        onFocusChange={this.onChangeCalendarFocus}
+                        numberOfMonths={1}
+                        isOutsideRange={() => false}
                     />
                     <textarea
                         placeholder="Enter an optional note for the expense"

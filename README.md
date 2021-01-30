@@ -105,6 +105,8 @@ this.setState( () => ({ description: e.target.value }))
 ```
 
 # Regex
+https://regex101.com/
+
 Can use a regex in the string match() function - but enclose the regex in a pair of escape chars `/  /`
 
 ## Currency - 2 optional decimal places
@@ -124,6 +126,13 @@ Or...
 `^\d*(\.\d{0,2})?$` - Same as before but..
 
 `(\.\d{0,2})?`  optional group consisting of a dot and of 0 to 2 digits 
+
+# Moment.js
+
+The project uses moment, but this is legacy now and should not be used in new projects.
+
+https://momentjs.com/docs/#/-project-status/
+
 
 # Progress
 Started:  29-11-2020
