@@ -33,7 +33,7 @@ setTimeout(() => {
 }, 2000)
 
 setTimeout(() => {
-    store.dispatch(setTextFilter('bill'));
+    store.dispatch(setTextFilter(''));
 }, 6000)
 
 // console.log(visibleExpenses())

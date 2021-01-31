@@ -20,6 +20,11 @@ body {
   font-size: $m-size;
 }
 
+.oops {
+  color: red;
+  font-weight: bold;
+}
+
 button {
   cursor: pointer;
 }

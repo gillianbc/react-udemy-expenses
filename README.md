@@ -112,9 +112,9 @@ Can use a regex in the string match() function - but enclose the regex in a pair
 ## Currency - 2 optional decimal places
 `^\d*(\.)?(\d{0,2})?$`
 
-`^d`  starts with a digit
+`^`  starts with...
 
-`*`  multiple digits
+`\d*`  0 or more digits
 
 `(\.)?`  optional group consisting of a dot
 
@@ -126,6 +126,9 @@ Or...
 `^\d*(\.\d{0,2})?$` - Same as before but..
 
 `(\.\d{0,2})?`  optional group consisting of a dot and of 0 to 2 digits 
+
+To prevent a number like `.2` being accepted, we can change `*d` to `d{1,}` which means 1 to an-unspecified-number-of digits.
+Alternatively `\d\d*` means a digit followed by 0 or more digits
 
 # Moment.js
 
