@@ -9,13 +9,10 @@ import {getVisibleExpenses, getAllExpenses} from './selectors/expenses'
 import {addExpense} from "./actions/expenses";
 import {setTextFilter} from "./actions/filters";
 
-
 const visibleExpenses = () => {
     const state = store.getState()
     return getVisibleExpenses(state.expenses, state.filters)
 }
-
-
 
 const allExpenses = () => {
     const state = store.getState()
@@ -40,7 +37,7 @@ setTimeout(() => {
 // console.log(allExpenses())
 
 const jsx = (
-    <Provider store = {store}>
+    <Provider store={store}>
         <AppRouter/>
     </Provider>
 )
