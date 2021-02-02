@@ -21,29 +21,47 @@ class ExpenseForm extends Component {
         this.setState(() => ({ note }))
     }
     onChangeAmount = (e) => {
-        //   /^\d*(\.\d{0,2})?$
+        //   ^\d*(\.\d{0,2})?$/)
         const amount = e.target.value
-        if (amount.match(/^\d*(\.\d{0,2})?$/)){
+        if (!amount || amount.match(/^\d\d*(\.\d{0,2})?$/)){
             this.setState(() => ({ amount }))
         }
     }
     onChangeDate = (createdAt) => {
-        this.setState(() => ({createdAt}))
+        createdAt && this.setState(() => ({createdAt}))
     }
     onChangeCalendarFocus = ({focused}) => {
         this.setState(() => ({ calendarFocused: focused }))
+    }
+    onSubmit = (e) => {
+        e.preventDefault();  // suppress full-page refresh
+        if (!this.state.description || !this.state.amount){
+            this.setState(() => ({ error: true}))
+        } else {
+            this.setState(() => ({ error: false}))
+            this.props.onSubmit({
+                description: this.state.description,
+                note: this.state.note,
+                amount: parseFloat(this.state.amount, 10) * 100,
+                createdAt: this.state.createdAt.valueOf()
+            })
+            console.log('Submitted')
+        }
+
     }
     state = {
         description: '',
         note: '',
         amount: '0.00',
         createdAt: moment(),
-        calendarFocused: false
+        calendarFocused: false,
+        error: false
     }
     render() {
         return (
             <div>
-                <form>
+                <form onSubmit={this.onSubmit}>
+                    { this.state.error && (<p className="oops">Please enter an amount and a description</p>) }
                     <input
                         type="text"
                         placeholder="Description"
@@ -70,6 +88,7 @@ class ExpenseForm extends Component {
                         value = {this.state.note}
                         onChange = {this.onChangeNote}
                     />
+                    {/* By default, the button is a submit button */}
                     <button >Add Expense</button>
 
                 </form>
