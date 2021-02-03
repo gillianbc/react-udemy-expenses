@@ -9,6 +9,7 @@ import Header from "../components/Header";
 
 // There is no path for the NotFoundPage so this will always be a match.  It has to come last otherwise
 // that component would appear on every page as well as the other matching components
+// Note that we use :id to indicate a path param.  We omit the colon in the actual path e.g. edit/123
 const AppRouter = () => (
   <BrowserRouter>
     <div>
