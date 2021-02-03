@@ -20,6 +20,26 @@ devServer: {
     historyApiFallback: true
 }
 ```
+
+## Links and Navlinks
+https://reactrouter.com/web/api/Link
+import from react-router-dom
+
+Instead of using anchor tags for hyperlinks to pages in our app, we use Link and Navlink as this is client-side routing and avoids a 
+full-page refresh.  e.g.
+
+`<Link to="/">Go to the home page</Link>`
+
+We would still use anchor tags for external urls as we cannot render these pages ourselves.
+
+We created a simple header component with links to all the pages.  This was rendered on every page.
+![image](https://user-images.githubusercontent.com/20191662/106807663-4d51cf00-6661-11eb-921b-29007535b44b.png)
+We can use Navlink in exactly the same way and it's bahaviour would be identical.  So what's the point?
+Well, it has additional features such as allowing us to style the active selected option to highlight which link we clicked.
+
+A className of our choosing is assigned at runtime via `activeClassName="myclassname"` and we can then style that how ever we like.
+ 
+
 # Redux
 Better way of managing state.  Just set the webpack entry point in webpack.config.js to /src/playground/redux101.js to try it out.
 As usual, localhost:8080, but F12 view the console
