@@ -14,7 +14,7 @@ const AddExpensePage = (props) => (
         <ExpenseForm
             onSubmit={(expense) => {
                 console.log('Add Expense Page', props)
-                console.log('Expense page received an expense from the expense form', expense)
+                console.log('Add Expense page received an expense from the expense form', expense)
                 props.dispatch(addExpense(expense));
                 /* This is how we redirect */
                 props.history.push('/')

@@ -9,6 +9,18 @@ console.log('Date is ', now.format('dddd Do of MMMM DD-MMM-YYYY'))
 moment.locale('en_GB');
 
 class ExpenseForm extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            id: props.expense ? props.expense.id : undefined,
+            description: props.expense ? props.expense.description : '',
+            note: props.expense ? props.expense.note : '',
+            amount: props.expense ? (props.expense.amount/100).toString() : '0.00',
+            createdAt: props.expense ? moment(props.expense.createdAt) : moment(),
+            calendarFocused: false,
+            error: false
+        }
+    }
     onChangeDescription = (e) => {
         const description  = e.target.value
         // Andrew uses a function for all set state operations - read this for why https://www.freecodecamp.org/news/functional-setstate-is-the-future-of-react-374f30401b6b/
@@ -40,6 +52,7 @@ class ExpenseForm extends Component {
         } else {
             this.setState(() => ({ error: false}))
             this.props.onSubmit({
+                id: this.state.id,
                 description: this.state.description,
                 note: this.state.note,
                 amount: parseFloat(this.state.amount, 10) * 100,
@@ -49,14 +62,7 @@ class ExpenseForm extends Component {
         }
 
     }
-    state = {
-        description: '',
-        note: '',
-        amount: '0.00',
-        createdAt: moment(),
-        calendarFocused: false,
-        error: false
-    }
+
     render() {
         return (
             <div>
@@ -89,7 +95,7 @@ class ExpenseForm extends Component {
                         onChange = {this.onChangeNote}
                     />
                     {/* By default, the button is a submit button */}
-                    <button >Add Expense</button>
+                    <button >{(this.props.expense && this.props.expense.id) ? "Edit" : "Add"} Expense</button>
 
                 </form>
             </div>

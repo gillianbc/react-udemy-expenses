@@ -124,6 +124,31 @@ e.persist()
 this.setState( () => ({ description: e.target.value }))
 ```
 
+## Mapping State to Props
+```$xslt
+const mapStateToProps = (state, props) => {
+  return {
+    expense: state.expenses.find((expense) =>  expense.id === props.match.params.id )
+  }
+}
+
+// connect to the store
+export default connect(mapStateToProps)(EditExpensePage)
+```
+
+Explainer:  state is the store for the application.  We use connect() to connect a component to the store.
+To get values out of the store and into the props for that component, we use `mapStateToProps(state, props)`
+In the example above, we're populating `props.expense`
+![image](https://user-images.githubusercontent.com/20191662/106956522-9de32e00-672e-11eb-8e36-183420e9471e.png)
+
+But how did we get the expense id into the props for us to use in the find?
+
+That was a param passed in from the router:
+```$xslt
+    <Route path="/edit/:id" component={ EditExpensePage }/>
+```
+So, we have props that have been pushed in from when the component was called and props that we have pulled in from the store.
+
 # Regex
 https://regex101.com/
 
@@ -156,6 +181,87 @@ The project uses moment, but this is legacy now and should not be used in new pr
 
 https://momentjs.com/docs/#/-project-status/
 
+# Application Flow
+
+## Starting the app
+Webpack has the entry point as app.js
+
+## app.js
+app.js imports the configured store, defines the Provider and the App Router, dispatches a few add requests to the store.
+
+### configureStore
+combines the reducers for:
+- expenses
+- filters
+
+(The reducers are equivalent to graphql resolvers)
+
+#### expense reducer
+Defines the default state of the expenses as an empty []
+Defines the what to do with the state, i.e. the array of expenses, in response to each action.type 
+e.g. action.type = 'ADD_EXPENSE' then TODO
+
+#### filters reducer
+Defines the default state of the filters as:
+```$xslt
+text: '',
+sortBy: 'date',
+startDate: undefined,
+endDate: undefined
+```
+Defines the what to do with the state, i.e. the set of filters, in response to each action.type 
+e.g. action.type = 'SET_TEXT_FILTER' then sets the value of the property text to the payload value
+Note:  it doesn't do any filtering of the expenses, it's just setting filter properties
+
+## App Router
+AppRouter declares the BrowserRouter i.e. our available 'pages'.  (They're not pages - we have one page whose content get rerendered depending on which 'page' we pick).
+The Header is always rendered.  There's a switch statement for the urls of our create page, edit page etc
+
+##Dashboard Page - url / 
+ExpenseDashboardPage is a stateless functional component of:
+<ExpenseListFilters> - sort and filter options
+<MyExpenses> - the list of expenses (aka ExpenseList)
+
+## ExpenseListFilters
+Connected to the store
+Gets the filters from the state and maps to its props
+Renders inputs allowing you to 
+- choose the sort by date or amount
+- filter by a text value
+Dispatches the selected value to the state via dispatch actions available in the props
+Note:  it doesn't do any filtering of the expenses, it's just setting filter properties
+
+## Expense List
+Connected to the store.
+__mapStateToProps__
+- populates sorted and filtered **props.expenses** via state.expenses and state.filters via function getVisibleExpenses()
+- populates **props.filters** from state.filters
+
+For each expense in its props, it renders an <ExpenseListItem> passing in the expense.id as the key and all the fields from the expense
+
+## Expense List Item
+Connected to the store - there is no mapStateToProps, but it does destructure `dispatch` from the props.  
+`dispatch` is always available in the props for a connected component.
+Also destructures the id, amount, description and createdAt which it has received from <ExpenseList>
+Renders 
+- the received expense
+- a remove button that will dispatch the action returned by function removeExpense(id)
+- a link to the edit route using id
+
+## Edit Expense Page
+Connected to the store.
+__mapStateToProps__
+The route url will have passed the id to the props as a param i.e. props.match.params.id
+This id is then used to find the matching row of the state.expenses and populate the **props.expense**
+
+Renders <ExpenseForm> and passes in props of:
+- expense
+- onSubmit - a callback function 
+
+The onSubmit() function will dispatch either:
+- the action returned by function editExpense(expense.id, expense)
+- the action returned by function addExpense(expense)
+(dependent on whether or not there's an expense.id)
 
 # Progress
 Started:  29-11-2020
