@@ -13,6 +13,7 @@ const ExpenseList = (props) => (
             console.log('Processing in map', expense)
             // Send across an object consisting of each field of the expense object
              return <ExpenseListItem key={expense.id} {...expense}/>
+             //  {...expense }  NOTE: these are JSX brackets, not object curlies
             // The above sends across key and each items of expense to props (or whatever we decide to call the args object)
             // { id: "jskldjkla", amount: 1888 } etc
             // We can then destructure
@@ -23,7 +24,7 @@ const ExpenseList = (props) => (
             // { expense: {id: "jskldjkla", amount: 1888 } } etc
             // Alternately, I could have done this which is the preferred form when only a few properties as it's
             // explicit and you only pass what you need:
-            //return <ExpenseListItem key={expense.id}  amount={expense.amount} description={expense.description}/>
+            // return <ExpenseListItem key={expense.id}  amount={expense.amount} description={expense.description}/>
             // Remember that the {} here are not object brackets, they are so we can write JS within the JSX
         })}
     </div>
