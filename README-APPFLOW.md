@@ -1,6 +1,7 @@
 # Application Flow
 
 ## Starting the app
+package.json has script dev-server which launches webpack.
 Webpack has the entry point as app.js
 
 ## app.js
@@ -97,6 +98,14 @@ Renders <ExpenseForm> and passes in props of:
 The onSubmit() function will dispatch:
 - the action returned by function addExpense(expense)
 After dispatching the action, the root page (dashboard) is re-rendered via props.history.push('/')
+
+## ExpenseForm
+Used by both the EditExpensePage and the AddExpensePage.
+Class-based component that inherits from React-component.  
+Its render() method provides an html form with all the input fields for adding/editing an expense plus a submit button.  
+The onSubmit() callback function will be called when the form is submitted via the submit button.
+The constructor sets the state object to the fields required for an expense, using defaults if no expense was passed in.
+Defines event handlers for the form field events.
 
 ## expenses actions
 A set of functions that return actions for expenses.  e.g. the addExpense() function will return an object with type: 'ADD_EXPENSE' 
