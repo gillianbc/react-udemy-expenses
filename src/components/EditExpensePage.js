@@ -2,7 +2,7 @@
 import React from "react";
 import {connect} from 'react-redux';
 import ExpenseForm from "./ExpenseForm";
-import {addExpense} from "../actions/expenses";
+import {addExpense, removeExpense} from "../actions/expenses";
 import {editExpense} from "../actions/expenses";
 
 const EditExpensePage = (props) => (
@@ -19,6 +19,10 @@ const EditExpensePage = (props) => (
             props.history.push('/')
           }}
       />
+        <button onClick={() => {
+            props.dispatch(removeExpense({id: props.expense.id}))
+            props.history.push('/')
+        }}>Remove</button>
     </div> )
 
 // We need to pass the id in from our class's props and get an expense object out of the store (aka the global state)

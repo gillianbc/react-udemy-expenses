@@ -1,6 +1,8 @@
 # Application Flow
+Explains the application flow up to the end of Lecture 108.
 
 ## Starting the app
+package.json has script dev-server which launches webpack.
 Webpack has the entry point as app.js
 
 ## app.js
@@ -68,7 +70,6 @@ Connected to the store - there is no mapStateToProps, but it does destructure `d
 Also destructures the id, amount, description and createdAt which it has received from <ExpenseList>
 Renders 
 - the received expense
-- a remove button that will dispatch the action returned by function removeExpense(id)
 - a link to the edit route using id
 
 ## EditExpensePage - path="/edit/:id"
@@ -80,11 +81,13 @@ This id is then used to find the matching row of the state.expenses and populate
 Renders <ExpenseForm> and passes in props of:
 - expense
 - onSubmit - a callback function 
+and also renders a remove button that will dispatch the action returned by function removeExpense(id)
 
 The onSubmit() function will dispatch either:
 - the action returned by function editExpense(expense.id, expense)
 - the action returned by function addExpense(expense)
 (dependent on whether or not there's an expense.id)
+
 After dispatching the action, the root page (dashboard) is re-rendered via props.history.push('/')
 
 ## AddExpensePage - path="/create"
@@ -97,6 +100,14 @@ Renders <ExpenseForm> and passes in props of:
 The onSubmit() function will dispatch:
 - the action returned by function addExpense(expense)
 After dispatching the action, the root page (dashboard) is re-rendered via props.history.push('/')
+
+## ExpenseForm
+Used by both the EditExpensePage and the AddExpensePage.
+Class-based component that inherits from React-component.  
+Its render() method provides an html form with all the input fields for adding/editing an expense plus a submit button.  
+The onSubmit() callback function will be called when the form is submitted via the submit button.
+The constructor sets the state object to the fields required for an expense, using defaults if no expense was passed in.
+Defines event handlers for the form field events.
 
 ## expenses actions
 A set of functions that return actions for expenses.  e.g. the addExpense() function will return an object with type: 'ADD_EXPENSE' 
