@@ -21,5 +21,7 @@ const AddExpensePage = (props) => (
             }}
         />
     </div> )
+
+// If we pass no args to connect(), then the ExpenseListItem will receive dispatch from the store by default
 const ConnectedAddExpensePage = connect()(AddExpensePage)
 export default ConnectedAddExpensePage

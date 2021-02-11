@@ -1,4 +1,5 @@
 # Application Flow
+Explains the application flow up to the end of Lecture 108.
 
 ## Starting the app
 package.json has script dev-server which launches webpack.
@@ -69,7 +70,6 @@ Connected to the store - there is no mapStateToProps, but it does destructure `d
 Also destructures the id, amount, description and createdAt which it has received from <ExpenseList>
 Renders 
 - the received expense
-- a remove button that will dispatch the action returned by function removeExpense(id)
 - a link to the edit route using id
 
 ## EditExpensePage - path="/edit/:id"
@@ -81,11 +81,13 @@ This id is then used to find the matching row of the state.expenses and populate
 Renders <ExpenseForm> and passes in props of:
 - expense
 - onSubmit - a callback function 
+and also renders a remove button that will dispatch the action returned by function removeExpense(id)
 
 The onSubmit() function will dispatch either:
 - the action returned by function editExpense(expense.id, expense)
 - the action returned by function addExpense(expense)
 (dependent on whether or not there's an expense.id)
+
 After dispatching the action, the root page (dashboard) is re-rendered via props.history.push('/')
 
 ## AddExpensePage - path="/create"
