@@ -181,6 +181,9 @@ The project uses moment, but this is legacy now and should not be used in new pr
 
 https://momentjs.com/docs/#/-project-status/
 
+# Date picker and date range picker
+https://github.com/airbnb/react-dates#daterangepicker
+
 # Redux Dev-Tools
 Allows you to view the state, see the action methods, dispatch events etc
 Add the Chrome extensiom - redux dev-tools extension

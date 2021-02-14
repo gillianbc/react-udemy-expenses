@@ -116,7 +116,7 @@ and an expense: object constructed from the args passed in.
 ## filters actions
 A set of functions that return actions for filters.  e.g. the sortByAmount() function will simply return an object with type: 'SORT_BY_AMOUNT'.
 
-
 ## Observations
-The only class based react component. we have is the ExpenseForm i.e. direct render() method.  The other parts are just stateless functional components that return some JSX.
+The only class based react component. we have at this point is the ExpenseForm i.e. direct render() method and we need to manages its state.  
+The other parts are just stateless functional components that return some JSX.
 We also have the <BrowserRouter> which conditionally renders content based on the selected path.

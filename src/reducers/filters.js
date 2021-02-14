@@ -1,9 +1,11 @@
 // This is effectively the schema for the filters.
+import moment from "moment";
+
 const filtersDefaultState = {
     text: '',
     sortBy: 'date',
-    startDate: undefined,
-    endDate: undefined
+    startDate: moment().startOf('month'),
+    endDate: moment().endOf('month')
 }
 
 const filtersReducer = (state = filtersDefaultState, action) => {
