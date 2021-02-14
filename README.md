@@ -182,7 +182,7 @@ The project uses moment, but this is legacy now and should not be used in new pr
 https://momentjs.com/docs/#/-project-status/
 
 # Redux Dev-Tools
-Allows you to TODO
+Allows you to view the state, see the action methods, dispatch events etc
 Add the Chrome extensiom - redux dev-tools extension
 You need to add an argument when creating the store:
  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
