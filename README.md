@@ -192,8 +192,6 @@ You need to add an argument when creating the store:
  
  https://github.com/zalmoxisus/redux-devtools-extension
  
-  
-
 # Progress
 Started:  29-11-2020
 
