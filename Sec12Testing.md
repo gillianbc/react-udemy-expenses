@@ -34,3 +34,32 @@ Tests:       1 passed, 1 total
 Snapshots:   1 updated, 1 total
 
 ```
+# Enzyme
+
+We needed 3 packages for this - enzyme, an adapter and raf (request animation frame) which is a browser polyfill.  
+We get this configured in a single setup file for our tests
+
+https://enzymejs.github.io/enzyme/
+
+We then need to configure jest to use our enzyme config file:
+
+https://jestjs.io/docs/en/configuration#setupfiles-array
+
+In `jest.config.json`, we have:
+```
+{
+    "setupFiles": [
+      "raf/polyfill",
+      "<rootDir>/src/test/setupTests.js"
+    ]
+}
+```
+The polyfill must be loaded first.  The path for anything not in node modules, such as our enzyme setup file, 
+needs <rootDir> so that the path is relative to the root of the project.
+
+Lastly, we have to let jest know to use the `jest.config.json` so we specify that in package.json:
+
+`"test": "jest --config=jest.config.json",`
+
+
+
