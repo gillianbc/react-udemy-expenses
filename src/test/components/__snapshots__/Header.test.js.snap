@@ -1,34 +1,34 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`rendered header should match the snapshot 1`] = `
+exports[`The snapshot should match 1`] = `
 <header>
   <h1>
-    Expensify Application
+    Expensify App
   </h1>
   <p>
-    <NavLink
+    <[object Object]
       activeClassName="isactive"
       exact={true}
       to="/"
     >
       DASHBOARD
-    </NavLink>
+    </[object Object]>
   </p>
   <p>
-    <NavLink
+    <[object Object]
       activeClassName="isactive"
       to="/create"
     >
       CREATE
-    </NavLink>
+    </[object Object]>
   </p>
   <p>
-    <NavLink
+    <[object Object]
       activeClassName="isactive"
       to="/help"
     >
       HELP
-    </NavLink>
+    </[object Object]>
   </p>
 </header>
 `;

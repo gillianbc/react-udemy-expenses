@@ -61,5 +61,31 @@ Lastly, we have to let jest know to use the `jest.config.json` so we specify tha
 
 `"test": "jest --config=jest.config.json",`
 
+The enzyme snapshots by default include a lot of internal metadata that we don't need.
+To avoid that, we use enzyme-to-json.  It then works just like when using ReactShallowRenderer.
+See Header.test.js
+```
+import toJSON from 'enzyme-to-json'
+it('The snapshot should match', () => {
+    const wrapper = shallow(<Header />);
+    expect(toJSON(wrapper)).toMatchSnapshot();
+})
+```
+
+We always want this JSON serialization to happen so we add this to the jest config too i.e.
+```
+{
+    "setupFiles": [
+      "raf/polyfill",
+      "<rootDir>/src/test/setupTests.js"
+    ],
+    "snapshotSerializers": [
+      "enzyme-to-json/serializer"
+    ]
+}
+```
+ We then don't need to import toJSON from 'enzyme-to-json' and we can just do:
+ `expect(wrapper).toMatchSnapshot();`
+
 
 
