@@ -31,3 +31,11 @@ exports[`The snapshot should match 1`] = `
   />
 </div>
 `;
+
+exports[`The snapshot should match when there is an empty array of expenses 1`] = `
+<div>
+  <h1>
+    This is my Expense List
+  </h1>
+</div>
+`;
