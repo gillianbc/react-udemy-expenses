@@ -3,14 +3,12 @@ import {connect} from "react-redux";
 import ExpenseListItem from "./ExpenseListItem";
 import {getVisibleExpenses} from "../selectors/expenses";
 
-const ExpenseList = (props) => (
+export const ExpenseList = (props) => (
     <div>
         <h1>This is my Expense List</h1>
-        <p>My name is {props.gillian}</p>
-        <p>The text filter from the state is: {props.filters.text}</p>
         {props.expenses.map((expense) => {
             // When we map the array of expenses, each row is an object
-            console.log('Processing in map', expense)
+            // console.log('Processing in map', expense)
             // Send across an object consisting of each field of the expense object
              return <ExpenseListItem key={expense.id} {...expense}/>
              //  {...expense }  NOTE: these are JSX brackets, not object curlies
