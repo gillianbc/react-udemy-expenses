@@ -8,10 +8,11 @@ exports[`The snapshot should match when there is expense data 1`] = `
     >
       Credit Card
     </[object Object]>
-     £
+      £
     4500
      Created Date: 
     345600000
+    .
   </p>
 </div>
 `;
