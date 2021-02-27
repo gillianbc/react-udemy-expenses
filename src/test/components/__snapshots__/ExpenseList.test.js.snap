@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`The snapshot should match 1`] = `
+exports[`The snapshot should match when there is an array of expenses 1`] = `
 <div>
   <h1>
     This is my Expense List

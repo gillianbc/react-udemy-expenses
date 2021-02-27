@@ -8,7 +8,6 @@ export const ExpenseList = (props) => (
         <h1>This is my Expense List</h1>
         {props.expenses.map((expense) => {
             // When we map the array of expenses, each row is an object
-            // console.log('Processing in map', expense)
             // Send across an object consisting of each field of the expense object
              return <ExpenseListItem key={expense.id} {...expense}/>
              //  {...expense }  NOTE: these are JSX brackets, not object curlies

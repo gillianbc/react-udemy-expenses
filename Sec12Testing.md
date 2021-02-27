@@ -89,5 +89,6 @@ We always want this JSON serialization to happen so we add this to the jest conf
 
 We need to test components 'unconnected' i.e. with test data that we pass in, not data from the store.  
 The connected component is generally the default export, so we need to export the basic unconnected component too.  
-Remember, we can export as many named components as we want, even if we're exporting a default component.  See ExpenseList.test.js 
+Remember, we can export as many named components as we want, even if we're exporting a default component.  See ExpenseList.test.js.
+If the component is not connected, then the usual export is just fine for testing. 
 
