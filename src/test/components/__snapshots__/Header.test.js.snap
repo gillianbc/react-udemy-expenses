@@ -6,29 +6,29 @@ exports[`The snapshot should match 1`] = `
     Expensify App
   </h1>
   <p>
-    <[object Object]
+    <NavLink
       activeClassName="isactive"
       exact={true}
       to="/"
     >
       DASHBOARD
-    </[object Object]>
+    </NavLink>
   </p>
   <p>
-    <[object Object]
+    <NavLink
       activeClassName="isactive"
       to="/create"
     >
       CREATE
-    </[object Object]>
+    </NavLink>
   </p>
   <p>
-    <[object Object]
+    <NavLink
       activeClassName="isactive"
       to="/help"
     >
       HELP
-    </[object Object]>
+    </NavLink>
   </p>
 </header>
 `;
