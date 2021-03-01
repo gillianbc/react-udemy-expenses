@@ -10,7 +10,6 @@ exports[`The snapshot should match when there is an array of expenses 1`] = `
     createdAt={0}
     description="Gum"
     id="1"
-    key="1"
     note=""
   />
   <ExpenseListItem
@@ -18,7 +17,6 @@ exports[`The snapshot should match when there is an array of expenses 1`] = `
     createdAt={-345600000}
     description="Rent"
     id="2"
-    key="2"
     note=""
   />
   <ExpenseListItem
@@ -26,7 +24,6 @@ exports[`The snapshot should match when there is an array of expenses 1`] = `
     createdAt={345600000}
     description="Credit Card"
     id="3"
-    key="3"
     note="I never pay interest as I clear the whole balance every month"
   />
 </div>
