@@ -88,7 +88,11 @@ We always want this JSON serialization to happen so we add this to the jest conf
  `expect(wrapper).toMatchSnapshot();`
 
 EXCEPT... that didn't work, I am getting object object so the serialization is not happening in my snapshots.  Raised issue in the Q&A
-Sec12-Lec120
+Sec12-Lec120 - resolved by copying in all the tutor's config files and yarn installing.  This puts me back on react 15 and babel 6, but it works OK.
+
+:warning: Also note that in intellij, right-clicking a test file and running it is not the same as doing `npm test`.  Our test script is:
+`"test": "jest --config=jest.config.json"` so that is what you need to use when right-click testing.  
+i.e. in the run configuration, use jest options `--config=jest.config.json`
 
 We need to test components 'unconnected' i.e. with test data that we pass in, not data from the store.  
 The connected component is generally the default export, so we need to export the basic unconnected component too.  
