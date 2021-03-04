@@ -90,6 +90,12 @@ We always want this JSON serialization to happen so we add this to the jest conf
 EXCEPT... that didn't work, I am getting object object so the serialization is not happening in my snapshots.  Raised issue in the Q&A
 Sec12-Lec120 - resolved by copying in all the tutor's config files and yarn installing.  This puts me back on react 15 and babel 6, but it works OK.
 
+In Sec12-Lec121, I had more issues as I was using Uk dates in ExpenseForm.js i.e. 
+`moment.locale('en_GB');`
+I have commented this out for now.  Also note that by reverting the versions to match the tutors, I could no longer get the app to start as it's on very
+old versions that are incompatible with my Windows version.  I will get through the testing chapters, then revert back to my more recent versions to finish the
+sass chapters.
+
 :warning: Also note that in intellij, right-clicking a test file and running it is not the same as doing `npm test`.  Our test script is:
 `"test": "jest --config=jest.config.json"` so that is what you need to use when right-click testing.  
 i.e. in the run configuration, use jest options `--config=jest.config.json`
@@ -99,4 +105,14 @@ The connected component is generally the default export, so we need to export th
 Remember, we can export as many named components as we want, even if we're exporting a default component.  See ExpenseList.test.js.
 If the component is not connected, then the usual export is just fine for testing. 
 
+# Mocking with Jest
+When we want to create a snapshot of the Expense Form, we can pass in no expense and that will cause the default values to come into play,
+as if we were creating a new expense.  However, the createdAt field defaults to the current moment in time, so when the test re-runs,
+the snapshot doesn't match as the timestamp will be different.
 
+Mocks for jest need to be in the `__mocks__` folder under the tests folder.  Use the name of the module you're mocking e.g. moment.js.
+
+To get around that, we need to mock out moment so that if moment is called on to give us the current date/time, it returns a fixed value.
+If the a createdAt is passed in, we still want to call the real moment, but we cannot just do an import of moment as that would call our mock moment.
+
+Jest docs for this:  https://jestjs.io/docs/en/manual-mocks

@@ -1,12 +1,11 @@
 import React, {Component} from 'react';
 import moment from "moment";
 import {SingleDatePicker} from 'react-dates'
-import 'react-dates/lib/css/_datepicker.css'
 
 const now = moment();
 console.log('Date is ', now.format('dddd Do of MMMM DD-MMM-YYYY'))
 
-moment.locale('en_GB');
+// moment.locale('en_GB');
 
 class ExpenseForm extends Component {
     constructor(props) {
