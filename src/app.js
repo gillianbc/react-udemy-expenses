@@ -8,6 +8,7 @@ import store from './store/configureStore'
 import {getVisibleExpenses, getAllExpenses} from './selectors/expenses'
 import {addExpense} from "./actions/expenses";
 import {setTextFilter} from "./actions/filters";
+import 'react-dates/lib/css/_datepicker.css'
 
 const visibleExpenses = () => {
     const state = store.getState()
