@@ -105,6 +105,13 @@ The connected component is generally the default export, so we need to export th
 Remember, we can export as many named components as we want, even if we're exporting a default component.  See ExpenseList.test.js.
 If the component is not connected, then the usual export is just fine for testing. 
 
+See notes in ExpenseForm.test.js for details of how to test an event e.g. submit.
+
+# IntelliJ Jest - Run individual test via Right-Click
+Configuration file:  C:\DEV\gillian\react-udemy-expenses\jest.config.json
+Jest Package: C:\DEV\gillian\react-udemy-expenses\node_modules\jest
+Working directory: C:\DEV\gillian\react-udemy-expenses
+
 # Mocking with Jest
 When we want to create a snapshot of the Expense Form, we can pass in no expense and that will cause the default values to come into play,
 as if we were creating a new expense.  However, the createdAt field defaults to the current moment in time, so when the test re-runs,

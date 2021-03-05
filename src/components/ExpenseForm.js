@@ -17,7 +17,7 @@ class ExpenseForm extends Component {
             amount: props.expense ? (props.expense.amount/100).toString() : '0.00',
             createdAt: props.expense ? moment(props.expense.createdAt) : moment(),
             calendarFocused: false,
-            error: false
+            error: ''
         }
     }
     onChangeDescription = (e) => {
@@ -47,7 +47,7 @@ class ExpenseForm extends Component {
     onSubmit = (e) => {
         e.preventDefault();  // suppress full-page refresh
         if (!this.state.description || !this.state.amount){
-            this.setState(() => ({ error: true}))
+            this.setState(() => ({ error: 'Please provide description and amount.' }));
         } else {
             this.setState(() => ({ error: false}))
             this.props.onSubmit({
@@ -59,14 +59,13 @@ class ExpenseForm extends Component {
             })
             console.log('Submitted')
         }
-
     }
 
     render() {
         return (
             <div>
                 <form onSubmit={this.onSubmit}>
-                    { this.state.error && (<p className="oops">Please enter an amount and a description</p>) }
+                    {this.state.error && <p>{this.state.error}</p>}
                     <input
                         type="text"
                         placeholder="Description"
