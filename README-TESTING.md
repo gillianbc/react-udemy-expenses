@@ -115,7 +115,7 @@ the snapshot doesn't match as the timestamp will be different.
 Mocks for jest need to be in the `__mocks__` folder under the tests folder.  Use the name of the module you're mocking e.g. moment.js.
 
 To get around that, we need to mock out moment so that if moment is called on to give us the current date/time, it returns a fixed value.
-If the a createdAt is passed in, we still want to call the real moment, but we cannot just do an import of moment as that would call our mock moment.
+If a createdAt value is passed in, we still want to call the real moment, but we cannot just do an import of moment as that would call our mock moment.
 
 Jest docs for this:  https://jestjs.io/docs/en/manual-mocks
 

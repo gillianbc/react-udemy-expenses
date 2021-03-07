@@ -40,13 +40,38 @@ describe('ExpenseForm tests', () => {
         });
     })
 
-    describe('onChangeDate', () => {
+    describe('onChangeAmount', () => {
+        it('should set the amount in the state when a valid amount is entered into the 2nd input field ', () => {
+            const wrapper = shallow(<ExpenseForm />);
+            const testAmount = '1000.99';
+            wrapper.find('input').at(1)
+                .simulate('change', { target: { value: testAmount }});
+            expect(wrapper.state('amount')).toBe(testAmount);
+        });
 
+        it('should not set the amount in the state when an invalid amount is entered into the 2nd input field ', () => {
+            const wrapper = shallow(<ExpenseForm expense={sampleExpenses[0]}/>)
+            const originalAmount = wrapper.state('amount')
+            const testAmount = '1000.9945';
+            wrapper.find('input').at(1)
+                .simulate('change', { target: { value: testAmount }});
+            expect(wrapper.state('amount')).toBe(originalAmount);
+        });
     })
 
-    describe('onChangeCalendarFocus', () => {
+    // describe('TODO - onChangeDate', () => {
+    //     it('should set the createdAt in the state when something is entered into the only date picker field ', () => {
+    //         const wrapper = shallow(<ExpenseForm />);
+    //         const testDate = 16271;
+    //         wrapper.find('SingleDatePicker')
+    //             .simulate('change', { target: { value: testDate }});
+    //         expect(wrapper.state('note')).toBe(testDate);
+    //     });
+    // })
 
-    })
+    // describe('TODO onChangeCalendarFocus', () => {
+    //
+    // })
 
     describe('onSubmit', () => {
         describe('Submit Event - Errors', () => {
@@ -88,19 +113,19 @@ describe('ExpenseForm tests', () => {
             });
         })
 
-        describe('TODO - Submit Event - Valid', () => {
-            it('should submit a valid expense', () => {
-                const onSubmit= (expense) =>  console.log(expense) ;
-                const wrapper = shallow(<ExpenseForm includedProp={onSubmit} expense={sampleExpenses[0]}/>)
-
-                wrapper.find('form').simulate('submit',
-                    {
-                        preventDefault: () => { },
-                    });
-                expect(wrapper.state('error').length).toBe(0);
-            });
-
-        })
+        // describe('TODO - Submit Event - Valid', () => {
+        //     it('should submit a valid expense', () => {
+        //         const onSubmit= (expense) =>  console.log(expense) ;
+        //         const wrapper = shallow(<ExpenseForm includedProp={onSubmit} expense={sampleExpenses[0]}/>)
+        //
+        //         wrapper.find('form').simulate('submit',
+        //             {
+        //                 preventDefault: () => { },
+        //             });
+        //         expect(wrapper.state('error').length).toBe(0);
+        //     });
+        //
+        // })
     })
 
 })
