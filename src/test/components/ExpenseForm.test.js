@@ -76,11 +76,26 @@ describe("ExpenseForm tests", () => {
       wrapper.find("SingleDatePicker").prop("onDateChange")(now);
       expect(wrapper.state("createdAt")).toBe(now);
     });
-  });
 
-  // describe('TODO onChangeCalendarFocus', () => {
-  //
-  // })
+    //onFocusChange={this.onChangeCalendarFocus}
+    it("should set the calendarFocused true in the state when date picker field used'", () => {
+      const wrapper = shallow(<ExpenseForm />);
+      const testValue = true;
+      const focused = { focused: testValue };
+      // Call the SingleDatePicker's onDateChange function with a value of now
+      wrapper.find("SingleDatePicker").prop("onFocusChange")(focused);
+      expect(wrapper.state("calendarFocused")).toBe(testValue);
+    });
+
+    it("should set the calendarFocused false in the state when date picker field left'", () => {
+      const wrapper = shallow(<ExpenseForm />);
+      const testValue = false;
+      const focused = { focused: testValue };
+      // Call the SingleDatePicker's onDateChange function with a value of now
+      wrapper.find("SingleDatePicker").prop("onFocusChange")(focused);
+      expect(wrapper.state("calendarFocused")).toBe(testValue);
+    });
+  });
 
   describe("onSubmit", () => {
     describe("Submit Event - Errors", () => {
