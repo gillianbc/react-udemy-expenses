@@ -14,7 +14,7 @@ class ExpenseForm extends Component {
             id: props.expense ? props.expense.id : undefined,
             description: props.expense ? props.expense.description : '',
             note: props.expense ? props.expense.note : '',
-            amount: props.expense ? (props.expense.amount/100).toString() : '0.00',
+            amount: props.expense && props.expense.amount ? (props.expense.amount/100).toString() : '0.00',
             createdAt: props.expense ? moment(props.expense.createdAt) : moment(),
             calendarFocused: false,
             error: ''
@@ -46,10 +46,11 @@ class ExpenseForm extends Component {
     }
     onSubmit = (e) => {
         e.preventDefault();  // suppress full-page refresh
-        if (!this.state.description || !this.state.amount){
+        if (!this.state.description || !this.state.amount || this.state.amount === "0.00"){
             this.setState(() => ({ error: 'Please provide description and amount.' }));
         } else {
             this.setState(() => ({ error: false}))
+            console.log(`State ${JSON.stringify(this.state)}`)
             this.props.onSubmit({
                 id: this.state.id,
                 description: this.state.description,
