@@ -2,6 +2,7 @@ import React from "react";
 import { shallow } from "enzyme";
 import ExpenseForm from "../../components/ExpenseForm";
 import sampleExpenses from "../resources/expenses";
+import moment from "moment";
 
 describe("ExpenseForm tests", () => {
   describe("Rendering initial page", () => {
@@ -67,15 +68,15 @@ describe("ExpenseForm tests", () => {
     });
   });
 
-  // describe('TODO - onChangeDate', () => {
-  //     it('should set the createdAt in the state when something is entered into the only date picker field ', () => {
-  //         const wrapper = shallow(<ExpenseForm />);
-  //         const testDate = 16271;
-  //         wrapper.find('SingleDatePicker')
-  //             .simulate('change', { target: { value: testDate }});
-  //         expect(wrapper.state('note')).toBe(testDate);
-  //     });
-  // })
+  describe("onChangeDate", () => {
+    it("should set the createdAt in the state when something is entered into the only date picker field ", () => {
+      const wrapper = shallow(<ExpenseForm />);
+      const now = moment();
+      // Call the SingleDatePicker's onDateChange function with a value of now
+      wrapper.find("SingleDatePicker").prop("onDateChange")(now);
+      expect(wrapper.state("createdAt")).toBe(now);
+    });
+  });
 
   // describe('TODO onChangeCalendarFocus', () => {
   //
@@ -126,7 +127,12 @@ describe("ExpenseForm tests", () => {
     });
 
     describe("Submit Event - Valid", () => {
-      it("should submit call onSubmit with correct values when a valid expense", () => {
+      it("should submit call onSubmit with correct values when a valid expense is submitted", () => {
+        /*
+          When a valid expense is submitted, the Expense form calls the callback function it was passed i.e.
+          this.props.onSubmit
+          We create a spy for that function so that we can peek at what it got called with
+           */
         const onSubmitSpy = jest.fn();
         const preventDefault = () => {};
         const wrapper = shallow(
