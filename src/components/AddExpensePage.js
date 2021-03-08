@@ -4,27 +4,21 @@ import ExpenseForm from "./ExpenseForm";
 import { connect } from "react-redux";
 import { addExpense } from "../actions/expenses";
 
-// We pass a callback function down as a prop to the ExpenseForm
-// Let me explain the JSX syntax.  We need curlies for JS within JSX
-// onSubmit={some javascript}
-// (expense) => {}  is simply a single line arrow function
-export const AddExpensePage = (props) => (
-  <div>
-    <h1>Add Expense</h1>
-    <ExpenseForm
-      onSubmit={(expense) => {
-        console.log("Add Expense Page", props);
-        console.log(
-          "Add Expense page received an expense from the expense form",
-          expense
-        );
-        props.saveExpense(expense);
-        /* This is how we redirect */
-        props.history.push("/");
-      }}
-    />
-  </div>
-);
+export class AddExpensePage extends React.Component {
+  onSubmit = (expense) => {
+    this.props.saveExpense(expense);
+    /* This is how we redirect */
+    this.props.history.push("/");
+  };
+  render() {
+    return (
+      <div>
+        <h1>Add Expense</h1>
+        <ExpenseForm onSubmit={this.onSubmit} />
+      </div>
+    );
+  }
+}
 
 // If we pass no args to connect(), then the ExpenseListItem will receive dispatch from the store by default
 // const ConnectedAddExpensePage = connect()(AddExpensePage);

@@ -105,11 +105,23 @@ The connected component is generally the default export, so we need to export th
 Remember, we can export as many named components as we want, even if we're exporting a default component.  See ExpenseList.test.js.
 If the component is not connected, then the usual export is just fine for testing. 
 
+# Spies
 See notes in ExpenseForm.test.js for details of: 
 - how to test an event e.g. submit
 - how to use a spy to override a props callback function
 - how to call a 3rd party component's callback function (SingleDatePicker.onDateChange) directly 
 
+In AddExpensePage.test.js, we need to set up spies for two functions:
+- saveExpense()
+- history.push()
+
+Note how the latter is a function within the history object.
+
+Typically, we use the same name for spies:
+```
+const saveExpense = jest.fn();
+const history = { push: jest.fn() };
+```
 # Mocking with Jest
 When we want to create a snapshot of the Expense Form, we can pass in no expense and that will cause the default values to come into play,
 as if we were creating a new expense.  However, the createdAt field defaults to the current moment in time, so when the test re-runs,
