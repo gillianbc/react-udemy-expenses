@@ -192,6 +192,32 @@ You need to add an argument when creating the store:
  
  https://github.com/zalmoxisus/redux-devtools-extension
  
+## Loaders
+In webpack-config.js we use 3 loaders:
+```
+'style-loader',
+'css-loader',
+'sass-loader'
+```
+That means that webpack will look for specific non-javascript imports in the code and do special things with them.  
+For example, it will look for css and insert a style tag for the css into our html document    
+
+# Snippets
+## Basic Class Component
+```
+class MyComponent extends React.Component {
+    onSubmit = (item) => {
+        console.log('Doing something');
+    };
+    render() {
+        return (
+            <div>
+                Hello, this is some JSX
+            </div>
+        )
+    }
+}
+```
 # Progress
 Started:  29-11-2020
 
