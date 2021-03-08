@@ -192,6 +192,16 @@ You need to add an argument when creating the store:
  
  https://github.com/zalmoxisus/redux-devtools-extension
  
+## Loaders
+In webpack-config.js we use 3 loaders:
+```
+'style-loader',
+'css-loader',
+'sass-loader'
+```
+That means that webpack will look for specific non-javascript imports in the code and do special things with them.  
+For example, it will look for css and insert a style tag for the css into our html document    
+
 # Progress
 Started:  29-11-2020
 
