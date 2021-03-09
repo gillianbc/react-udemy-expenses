@@ -11,12 +11,6 @@ const EditExpensePage = (props) => (
     <ExpenseForm
       expense={props.expense}
       onSubmit={(expense) => {
-        console.log("Props expense", props.expense);
-        console.log("Edit Expense Page - id is ", expense.id);
-        console.log(
-          "Edit Expense page received an expense from the expense form",
-          expense
-        );
         expense.id
           ? props.dispatch(editExpense(expense.id, expense))
           : props.dispatch(addExpense(expense));

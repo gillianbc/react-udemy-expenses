@@ -112,14 +112,14 @@ See notes in ExpenseForm.test.js for details of:
 - how to call a 3rd party component's callback function (SingleDatePicker.onDateChange) directly 
 
 In AddExpensePage.test.js, we need to set up spies for two functions:
-- saveExpense()
+- addExpense()
 - history.push()
 
 Note how the latter is a function within the history object.
 
 Typically, we use the same name for spies:
 ```
-const saveExpense = jest.fn();
+const addExpense = jest.fn();
 const history = { push: jest.fn() };
 ```
 
