@@ -12,24 +12,23 @@ describe("AddExpensePage tests", () => {
     - this.props.history.push()
     We set up spies for these
      */
-    it("Should render AddExpensePage correctly", () => {
-      const saveExpense = jest.fn();
-      const history = { push: jest.fn() };
+
+    let saveExpense, history, wrapper;
+
+    beforeEach(() => {
+      saveExpense = jest.fn();
+      history = { push: jest.fn() };
       // Now render the component passing in our two spies
-      const wrapper = shallow(
+      wrapper = shallow(
         <AddExpensePage saveExpense={saveExpense} history={history} />
       );
+    });
+    it("Should render AddExpensePage correctly", () => {
       // Take a snapshot
       expect(wrapper).toMatchSnapshot();
     });
 
     it("Should handle onSubmit correctly", () => {
-      const saveExpense = jest.fn();
-      const history = { push: jest.fn() };
-      // Now render the component passing in our two spies
-      const wrapper = shallow(
-        <AddExpensePage saveExpense={saveExpense} history={history} />
-      );
       wrapper.find("ExpenseForm").prop("onSubmit")(sampleExpenses[0]);
       expect(history.push).toHaveBeenLastCalledWith("/");
       expect(saveExpense).toHaveBeenLastCalledWith(sampleExpenses[0]);
