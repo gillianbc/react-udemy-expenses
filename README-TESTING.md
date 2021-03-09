@@ -122,6 +122,16 @@ Typically, we use the same name for spies:
 const saveExpense = jest.fn();
 const history = { push: jest.fn() };
 ```
+
+## Testing a function of a component
+e.g. the AddExpensePage has an onSubmit() function.  The onSubmit() is a callback that it passes down to the ExpenseForm
+component as a prop.  
+1) we need spies for any functions that it calls  
+2) we call the function and pass in the necessary args
+
+```js
+wrapper.find('ExpenseForm').prop('onsubmit')(expense)
+```
 # Mocking with Jest
 When we want to create a snapshot of the Expense Form, we can pass in no expense and that will cause the default values to come into play,
 as if we were creating a new expense.  However, the createdAt field defaults to the current moment in time, so when the test re-runs,
