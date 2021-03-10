@@ -29,6 +29,8 @@ describe("AddExpensePage tests", () => {
     });
 
     it("Should handle onSubmit correctly", () => {
+      // find the onSubmit property of the ExpenseForm element.
+      // It's a function, so let's invoke it with a sample expense.
       wrapper.find("ExpenseForm").prop("onSubmit")(sampleExpenses[0]);
       expect(history.push).toHaveBeenLastCalledWith("/");
       expect(addExpense).toHaveBeenLastCalledWith(sampleExpenses[0]);
