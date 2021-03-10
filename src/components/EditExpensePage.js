@@ -5,35 +5,29 @@ import ExpenseForm from "./ExpenseForm";
 import { addExpense, removeExpense } from "../actions/expenses";
 import { editExpense } from "../actions/expenses";
 
-const EditExpensePage = (props) => (
-  <div>
-    <h1>Edit Expense</h1>
-    <ExpenseForm
-      expense={props.expense}
-      onSubmit={(expense) => {
-        console.log("Props expense", props.expense);
-        console.log("Edit Expense Page - id is ", expense.id);
-        console.log(
-          "Edit Expense page received an expense from the expense form",
-          expense
-        );
-        expense.id
-          ? props.dispatch(editExpense(expense.id, expense))
-          : props.dispatch(addExpense(expense));
-        /* This is how we redirect.  history is always part of the props */
-        props.history.push("/");
-      }}
-    />
-    <button
-      onClick={() => {
-        props.dispatch(removeExpense({ id: props.expense.id }));
-        props.history.push("/");
-      }}
-    >
-      Remove
-    </button>
-  </div>
-);
+export class EditExpensePage extends React.Component {
+  onSubmit = (expense) => {
+    expense.id
+      ? this.props.editExpense(expense)
+      : this.props.addExpense(expense);
+    this.props.history.push("/");
+  };
+
+  onClick = (expense) => {
+    this.props.removeExpense(expense);
+    this.props.history.push("/");
+  };
+
+  render() {
+    return (
+      <div>
+        <h1>Edit Expense</h1>
+        <ExpenseForm expense={this.props.expense} onSubmit={this.onSubmit} />
+        <button onClick={this.onClick}>Remove</button>
+      </div>
+    );
+  }
+}
 
 // We need to pass the id in from our class's props and get an expense object out of the store (aka the global state)
 // If we then examine the props coming in, we will see that it has then been populated with the expense from the state
@@ -44,6 +38,13 @@ const mapStateToProps = (state, props) => {
     ),
   };
 };
-
+// The three methods that do the actual dispatch of the generated actions are now in the props
+// The component doesn't need to know about the dispatcher or the actions itself
+// It can just use the callback functions in its props (which happen to have the same names as the action generators)
+const mapDispatchToProps = (dispatch) => ({
+  removeExpense: (expense) => dispatch(removeExpense({ id: expense.id })),
+  editExpense: (expense) => dispatch(editExpense(expense.id, expense)),
+  addExpense: (expense) => dispatch(addExpense(expense)),
+});
 // connect to the store
-export default connect(mapStateToProps)(EditExpensePage);
+export default connect(mapStateToProps, mapDispatchToProps)(EditExpensePage);
