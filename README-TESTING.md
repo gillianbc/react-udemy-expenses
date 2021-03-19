@@ -145,10 +145,11 @@ If a createdAt value is passed in, we still want to call the real moment, but we
 Jest docs for this:  https://jestjs.io/docs/en/manual-mocks
 
 ## Refactoring Steps for App Modules Before Testing
-- Use class based component
+- Use class based component and export it (unconnected)
 - Move inline functions withing the JSX to class functions and just reference them in the JSX
 - For each dispatch call, define a function property xxx of mapDispatchToProps and pass that in using connect
 - use the passed in this.props.xxx rather than using dispatch directly within the class
+
 
 # IntelliJ Jest - Run individual test via Right-Click
 Configuration file:  C:\DEV\gillian\react-udemy-expenses\jest.config.json

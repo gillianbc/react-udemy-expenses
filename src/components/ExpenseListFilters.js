@@ -9,7 +9,7 @@ import {
   setEndDate,
 } from "../actions/filters";
 
-class ExpenseListFilters extends React.Component {
+export class ExpenseListFilters extends React.Component {
   state = {
     calendarFocused: null,
   };
@@ -31,22 +31,14 @@ class ExpenseListFilters extends React.Component {
     }
   };
   render() {
-    console.log("Date Range Picker Issues", this.props.filters.startDate);
-    console.log(
-      "The type is ",
-      console.log("is of type:", typeof this.props.filters.startDate)
-    );
     return (
       <div>
         <input
           type="text"
           value={this.props.filters.text}
-          onChange={this.onTextChange(e)}
+          onChange={this.onTextChange}
         />
-        <select
-          value={this.props.filters.sortBy}
-          onChange={this.onSortChange(e)}
-        >
+        <select value={this.props.filters.sortBy} onChange={this.onSortChange}>
           <option value="date">Date</option>
           <option value="amount">Amount</option>
         </select>
@@ -72,12 +64,12 @@ const mapStateToProps = (state) => {
     filters: state.filters,
   };
 };
-const mapDispatchToProps = {
+const mapDispatchToProps = (dispatch) => ({
   setStartDate: (startDate) => dispatch(setStartDate(startDate)),
   setEndDate: (endDate) => dispatch(setEndDate(endDate)),
-  setTextFilter: (text) => dispatch(setTextFilter(text)),
+  setTextFilter: (searchphrase) => dispatch(setTextFilter(searchphrase)),
   sortByAmount: () => dispatch(sortByAmount()),
   sortByDate: () => dispatch(sortByDate()),
-};
+});
 
 export default connect(mapStateToProps, mapDispatchToProps)(ExpenseListFilters);
