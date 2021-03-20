@@ -7,20 +7,25 @@ module.exports = {
     filename: 'bundle.js'
   },
   module: {
-    rules: [{
-      loader: 'babel-loader',
-      test: /\.js$/,
-      exclude: /node_modules/
-    }, {
-      test: /\.s?css$/,
-      use: [
-        'style-loader',
-        'css-loader',
-        'sass-loader'
-      ]
-    }]
+    rules: [
+      {
+        loader: 'babel-loader',
+        test: /\.js$/,
+        exclude: /node_modules/,
+      }, {
+        test: /\.s?css$/,
+        use: [
+          'style-loader',
+          'css-loader',
+          'sass-loader'
+        ]
+      },
+      {
+        loader: 'source-map-loader',
+        test: /\.js$/
+      }]
   },
-  devtool: 'cheap-module-eval-source-map',
+  devtool: "eval-cheap-module-source-map",
   devServer: {
     contentBase: path.join(__dirname, 'public'),
     historyApiFallback: true
