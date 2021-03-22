@@ -1,5 +1,7 @@
 # Section 13 Deployment
 
+This section was about producing a dev build and a production build
+
 Run the build script.  `"build": "webpack"`
 This shows that the bundle is huge:
 ```
@@ -8,7 +10,42 @@ This can impact web performance.
 Assets:
   bundle.js (3.94 MiB)
 ```
-A lot of this bloat is source-maps, which we don't necessarily need in production.
+A lot of this bloat is detailed source-maps, which we don't necessarily need in production.
 https://webpack.js.org/guides/production/
 
-In the course, Andrew's using webpack 3.1.0, but mine is 5.11.1.
+In the course, Andrew's using webpack 3.1.0, but mine is 5.11.1 so I went with webpack's current documentation.
+
+`npm install --save-dev webpack-merge`
+
+We can then replace webpack.config.js into 3 parts:
+
+* webpack-common.js
+* webpack-dev.js
+* webpack-prod.js
+
+Both the dev and prod configs import the common config.  
+For production, the build does not include the dev server and more basic source maps.
+The bundle size is much smaller.
+
+The dev and prod configs set `process.env.NODE_ENV` to either `development` or `production`
+
+The package.json scripts now use either the dev or production config:
+
+```
+    "start": "webpack serve --open --config webpack.dev.js",
+    "build-dev": "webpack --config webpack.dev.js",
+    "build-prod": "webpack --config webpack.prod.js",
+```
+NB `--open` means open the browser once served
+
+Note that our `start` script will do a dev build and serve it up.  
+If we want to serve up the production build, we need to run the production build to get our `bundle.js` and then serve it up
+using our old friend live-server
+
+`"serve": "live-server public/",`
+
+## Source Maps
+To check that the source maps are still working in production, just serve up the app and F12 to see the console and you should see the links adjacent to any console log statement
+e.g.
+![image](https://user-images.githubusercontent.com/20191662/112053926-dc04a780-8b4c-11eb-8a9c-f3954e036ab0.png)
+
