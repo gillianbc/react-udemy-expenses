@@ -47,5 +47,36 @@ using our old friend live-server
 ## Source Maps
 To check that the source maps are still working in production, just serve up the app and F12 to see the console and you should see the links adjacent to any console log statement
 e.g.
+
 ![image](https://user-images.githubusercontent.com/20191662/112053926-dc04a780-8b4c-11eb-8a9c-f3954e036ab0.png)
+
+## CSS Single File
+Andrew used extract-text-webpack-plugin but I think that's old hat now as webpack's documentation used `mini-css-extract-plugin`
+I followed webpack's instructions here:
+
+https://webpack.js.org/plugins/mini-css-extract-plugin/#extracting-all-css-in-a-single-file
+
+We want all our css (dev and prod) to end up in a single file called `styles.css`
+
+![image](https://user-images.githubusercontent.com/20191662/112059963-75838780-8b54-11eb-90c8-ab1364e2b9dc.png)
+
+Previously, we had 3 loaders:
+```
+{
+  test: /\.s?css$/,
+  use: ["style-loader", "css-loader", "sass-loader"],
+},
+```
+We're not going to be using inline styles anymore, so style-loader can go, but we do need the other two loaders.
+
+![image](https://user-images.githubusercontent.com/20191662/112059670-09a11f00-8b54-11eb-9187-e300967da541.png)
+
+Now we need to make our application use this all-in-one `styles.css` file so we add it to our `index.html`
+Note the path is relative to where in app is being served from i.e. public
+
+```
+<link rel="stylesheet" type="text/css" href="/styles.css"/>
+```
+
+
 
