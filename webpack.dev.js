@@ -12,7 +12,7 @@ module.exports = merge(common, {
       },
     ],
   },
-  devtool: "eval-cheap-module-source-map",
+  devtool: "inline-source-map",
   devServer: {
     contentBase: path.join(__dirname, "public"),
     historyApiFallback: true,
