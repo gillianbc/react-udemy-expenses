@@ -77,6 +77,15 @@ Note the path is relative to where in app is being served from i.e. public
 ```
 <link rel="stylesheet" type="text/css" href="/styles.css"/>
 ```
+We can see the styles at runtime via the Network tab - CSS.  You can also use right-click inspect.  
+
+For production, this works well as it tells us the original CSS file eg.datepicker.css
+For development, we just get one styles.css file - it hasn't given us complete soure maps for the css as we're using `devtool: "eval-cheap-module-source-map",`
+So, we change to `devtool: inline-source-map` for development - slow to build and refresh when changed, but easy to follow.
+In Andrew's version, he also has to set an source map option for css-loader and sass-loader, but I don't need to do this according to the latest css-loader documentation: 
+https://github.com/webpack-contrib/css-loader.
+https://github.com/webpack-contrib/sass-loader
+"By default generation of source maps depends on the devtool option. All values enable source map generation except eval and false value."
 
 
 
