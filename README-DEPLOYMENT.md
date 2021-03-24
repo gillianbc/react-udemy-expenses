@@ -89,6 +89,22 @@ https://github.com/webpack-contrib/css-loader.
 https://github.com/webpack-contrib/sass-loader
 "By default generation of source maps depends on the devtool option. All values enable source map generation except eval and false value."
 
+# Express Server
+Added a little express server `server/server.js` to serve up the contents of public.
+`node server/server.js`
+Remember that when we served up using webpack devServer, we instructed it to fallback to index.html for any 404 page not found via `historyApiFallback`.
+```
+devServer: {
+    contentBase: path.join(__dirname, "public"),
+    historyApiFallback: true,
+  },
+```
+We need to do the same thing with the express server to avoid e.g.: `Cannot GET /create`
+```
+app.get("*", (req, res) => {
+  res.sendFile(path.join(publicPath, "index.html"));
+});
+```
 
 
 
