@@ -117,12 +117,22 @@ Make sure you're in your project folder and that the folder is in git
 
 `heroku login`  Use my gszemeti@gmail.com plus the password from my keychain.
 
-`heroku create react-expensify`  If you don't supply an application name, it will assign a random name for you.
+`heroku create react-expensify-gbc`  If you don't supply an application name, it will assign a random name for you.
+
+```
+https://react-expensify-gbc.herokuapp.com/ | https://git.heroku.com/react-expensify-gbc.git
+```
 
 When the app has been created, it will have added an extra remote to your git.
 
 Do `git remote -v` to see the details.
 
+```
+heroku	https://git.heroku.com/react-expensify-gbc.git (fetch)
+heroku	https://git.heroku.com/react-expensify-gbc.git (push)
+origin	https://github.com/gillianbc/react-udemy-expenses.git (fetch)
+origin	https://github.com/gillianbc/react-udemy-expenses.git (push)
+```
 By default, heroku will try to run the `start` script in `package.json`.  
 We want it to run our express server so make sure you have:
 
@@ -148,3 +158,4 @@ Working with my local git and branches is just the same as before.  To update he
 (I had switched from yarn to npm so I deleted my yarn.lock in branch `Sec13-DEPLOYING-YOUR-APP-Lec136-Deploying-with-Heroku`).
 
 The first time you push to heroku, be patient, it will take a while.
+
