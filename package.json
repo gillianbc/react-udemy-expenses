@@ -5,6 +5,9 @@
   "repository": "https://github.com/gillianbc/react-udemy-budget.git",
   "author": "gillianbc <gszemeti@gmail.com>",
   "license": "MIT",
+  "engines": {
+    "node": "v10.15.1"
+  },
   "scripts": {
     "start": "node server/server.js",
     "devstart": "webpack serve --open --config webpack.dev.js",
