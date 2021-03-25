@@ -106,5 +106,45 @@ app.get("*", (req, res) => {
 });
 ```
 
+# Deploying to Heroku
+Use the heroku cli.  https://devcenter.heroku.com/articles/heroku-cli
 
+This is easier on mac rather than a windows shell.
 
+Make sure you're in your project folder and that the folder is in git
+
+`heroku --version`
+
+`heroku login`  Use my gszemeti@gmail.com plus the password from my keychain.
+
+`heroku create react-expensify`  If you don't supply an application name, it will assign a random name for you.
+
+When the app has been created, it will have added an extra remote to your git.
+
+Do `git remote -v` to see the details.
+
+By default, heroku will try to run the `start` script in `package.json`.  
+We want it to run our express server so make sure you have:
+
+`"start": "node server/server.js",`
+
+For our local express server, `server.js`, it's fine to use port 3000, but on heroku, the port number is dynamic.
+We can access the port number that heroku assigns via:
+
+`const port = process.env.PORT || 3000;`
+
+If it's not set, we fallback to 3000 for running locally.
+
+We must not check in all build assets (bundle.js etc) to git - heroku must build them fresh using webpack.
+To get heroku to use webpack, we need another `package.json` script that runs our production build script:
+
+`"heroku-postbuild": "npm run build-prod"`
+
+Working with my local git and branches is just the same as before.  To update heroku, use the master branch:
+
+`git push heroku master`
+
+*Note:*  heroku will use yarn if you have a yarn.lock, otherwise it will look for a package-lock.json to install all of the node-modules.
+(I had switched from yarn to npm so I deleted my yarn.lock in branch `Sec13-DEPLOYING-YOUR-APP-Lec136-Deploying-with-Heroku`).
+
+The first time you push to heroku, be patient, it will take a while.
