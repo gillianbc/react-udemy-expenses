@@ -13,8 +13,10 @@ export class EditExpensePage extends React.Component {
     this.props.history.push("/");
   };
 
-  onClick = (expense) => {
-    this.props.removeExpense(expense);
+  onClick = () => {
+    console.log('Remove clicked')
+    console.log(`REMOVE EXPENSE ${this.props.expense}`)
+    this.props.removeExpense(this.props.expense);
     this.props.history.push("/");
   };
 

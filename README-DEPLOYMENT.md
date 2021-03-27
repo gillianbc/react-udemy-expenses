@@ -1,6 +1,8 @@
 # Section 13 Deployment
 
-This section was about producing a dev build and a production build
+This section was about producing a dev build and a production build.
+[I went back to my more recent package.json so the tests probably don't work now as they
+depend on the older versions]
 
 Run the build script.  `"build": "webpack"`
 This shows that the bundle is huge:
