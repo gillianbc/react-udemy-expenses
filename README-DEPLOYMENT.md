@@ -158,4 +158,28 @@ Working with my local git and branches is just the same as before.  To update he
 (I had switched from yarn to npm so I deleted my yarn.lock in branch `Sec13-DEPLOYING-YOUR-APP-Lec136-Deploying-with-Heroku`).
 
 The first time you push to heroku, be patient, it will take a while.
+Your package.lock.json must be in sync with your package.json.
+If you have issues, do `heroku logs`
+
+# Dev and Production Dependencies
+Heroku will ignore dev dependencies, so make sure things like ensyme and jest are in the dev dependencies section
+We no longer need live-server as we have webpack's dev-server for dev and our express server for production. 
+(Removed live-server in branch 137)
+
+We can also tidy up the public folder so that everything that the production server needs is under a `public/dist` folder
+rather than being in separate files:
+
+![image](https://user-images.githubusercontent.com/20191662/112690314-79284e80-8e73-11eb-89d6-a205a9ca4866.png)
+
+When we use webpack's dev-server, we don't get a bundle.js under public (it all happens in memory), but it does need to 
+know where our assets are e.g. images.  https://webpack.js.org/configuration/dev-server/
+
+`contentBase: path.join(__dirname, "public")`
+
+We can access the in-memory bundle.js by default on http://localhost:8080/bundle.js.  
+We can set this to `http://localhost:8080/dist/bundle.js` via:
+
+https://webpack.js.org/configuration/dev-server/#devserverpublicpath-
+
+`publicPath: '/dist/'`
 
