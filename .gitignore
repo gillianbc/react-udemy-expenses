@@ -1,6 +1,3 @@
 node_modules
 .idea
-public/scripts
-public/bundle*
-public/bundle.js.LICENSE.txt
-public/styles*
+public/dist

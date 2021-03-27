@@ -176,7 +176,8 @@ know where our assets are e.g. images.  https://webpack.js.org/configuration/dev
 
 `contentBase: path.join(__dirname, "public")`
 
-We can access the in-memory bundle.js by default on http://localhost:8080/bundle.js.  We can set this to `dist` too:
+We can access the in-memory bundle.js by default on http://localhost:8080/bundle.js.  
+We can set this to `http://localhost:8080/dist/bundle.js` via:
 
 https://webpack.js.org/configuration/dev-server/#devserverpublicpath-
 
