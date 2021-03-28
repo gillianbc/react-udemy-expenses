@@ -4,7 +4,6 @@ exports[`The snapshot should match when there is expense data 1`] = `
 <div>
   Page not found 404 - 
   <Link
-    replace={false}
     to="/"
   >
     Go to the home page

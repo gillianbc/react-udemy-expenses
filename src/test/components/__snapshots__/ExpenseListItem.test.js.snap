@@ -4,14 +4,14 @@ exports[`The snapshot should match when there is expense data 1`] = `
 <div>
   <p>
     <Link
-      replace={false}
       to="edit/3"
     >
       Credit Card
     </Link>
-      £
+     £
     4500
-     Created Date: 
+     Created Date:
+     
     345600000
     .
   </p>
