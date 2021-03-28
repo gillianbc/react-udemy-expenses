@@ -33,6 +33,7 @@ exports[`ExpenseForm tests Rendering initial page should render expense form if 
       horizontalMargin={0}
       id="date"
       initialVisibleMonth={null}
+      inputIconPosition="before"
       isDayBlocked={[Function]}
       isDayHighlighted={[Function]}
       isOutsideRange={[Function]}
@@ -47,9 +48,11 @@ exports[`ExpenseForm tests Rendering initial page should render expense form if 
       onFocusChange={[Function]}
       onNextMonthClick={[Function]}
       onPrevMonthClick={[Function]}
+      openDirection="down"
       orientation="horizontal"
       phrases={
         Object {
+          "calendarLabel": "Calendar",
           "chooseAvailableDate": [Function],
           "clearDate": "Clear Date",
           "closeDatePicker": "Close",
@@ -61,7 +64,7 @@ exports[`ExpenseForm tests Rendering initial page should render expense form if 
           "jumpToNextMonth": "Move forward to switch to the next month",
           "jumpToPrevMonth": "Move backward to switch to the previous month",
           "keyboardNavigationInstructions": "Press the down arrow key to interact with the calendar and
-          select a date. Press the question mark key to get the keyboard shortcuts for changing dates.",
+  select a date. Press the question mark key to get the keyboard shortcuts for changing dates.",
           "keyboardShortcuts": "Keyboard Shortcuts",
           "leftArrowRightArrow": "Right and left arrow keys",
           "moveFocusByOneDay": "Move backward (left) and forward (right) by one day",
@@ -87,6 +90,7 @@ exports[`ExpenseForm tests Rendering initial page should render expense form if 
       screenReaderInputMessage=""
       showClearDate={false}
       showDefaultInputIcon={false}
+      weekDayFormat="dd"
       withFullScreenPortal={false}
       withPortal={false}
     />
@@ -137,6 +141,7 @@ exports[`ExpenseForm tests Rendering initial page should render expense form wit
       horizontalMargin={0}
       id="date"
       initialVisibleMonth={null}
+      inputIconPosition="before"
       isDayBlocked={[Function]}
       isDayHighlighted={[Function]}
       isOutsideRange={[Function]}
@@ -151,9 +156,11 @@ exports[`ExpenseForm tests Rendering initial page should render expense form wit
       onFocusChange={[Function]}
       onNextMonthClick={[Function]}
       onPrevMonthClick={[Function]}
+      openDirection="down"
       orientation="horizontal"
       phrases={
         Object {
+          "calendarLabel": "Calendar",
           "chooseAvailableDate": [Function],
           "clearDate": "Clear Date",
           "closeDatePicker": "Close",
@@ -165,7 +172,7 @@ exports[`ExpenseForm tests Rendering initial page should render expense form wit
           "jumpToNextMonth": "Move forward to switch to the next month",
           "jumpToPrevMonth": "Move backward to switch to the previous month",
           "keyboardNavigationInstructions": "Press the down arrow key to interact with the calendar and
-          select a date. Press the question mark key to get the keyboard shortcuts for changing dates.",
+  select a date. Press the question mark key to get the keyboard shortcuts for changing dates.",
           "keyboardShortcuts": "Keyboard Shortcuts",
           "leftArrowRightArrow": "Right and left arrow keys",
           "moveFocusByOneDay": "Move backward (left) and forward (right) by one day",
@@ -191,6 +198,7 @@ exports[`ExpenseForm tests Rendering initial page should render expense form wit
       screenReaderInputMessage=""
       showClearDate={false}
       showDefaultInputIcon={false}
+      weekDayFormat="dd"
       withFullScreenPortal={false}
       withPortal={false}
     />
@@ -241,6 +249,7 @@ exports[`ExpenseForm tests onSubmit Submit Event - Errors should render error fo
       horizontalMargin={0}
       id="date"
       initialVisibleMonth={null}
+      inputIconPosition="before"
       isDayBlocked={[Function]}
       isDayHighlighted={[Function]}
       isOutsideRange={[Function]}
@@ -255,9 +264,11 @@ exports[`ExpenseForm tests onSubmit Submit Event - Errors should render error fo
       onFocusChange={[Function]}
       onNextMonthClick={[Function]}
       onPrevMonthClick={[Function]}
+      openDirection="down"
       orientation="horizontal"
       phrases={
         Object {
+          "calendarLabel": "Calendar",
           "chooseAvailableDate": [Function],
           "clearDate": "Clear Date",
           "closeDatePicker": "Close",
@@ -269,7 +280,7 @@ exports[`ExpenseForm tests onSubmit Submit Event - Errors should render error fo
           "jumpToNextMonth": "Move forward to switch to the next month",
           "jumpToPrevMonth": "Move backward to switch to the previous month",
           "keyboardNavigationInstructions": "Press the down arrow key to interact with the calendar and
-          select a date. Press the question mark key to get the keyboard shortcuts for changing dates.",
+  select a date. Press the question mark key to get the keyboard shortcuts for changing dates.",
           "keyboardShortcuts": "Keyboard Shortcuts",
           "leftArrowRightArrow": "Right and left arrow keys",
           "moveFocusByOneDay": "Move backward (left) and forward (right) by one day",
@@ -295,6 +306,7 @@ exports[`ExpenseForm tests onSubmit Submit Event - Errors should render error fo
       screenReaderInputMessage=""
       showClearDate={false}
       showDefaultInputIcon={false}
+      weekDayFormat="dd"
       withFullScreenPortal={false}
       withPortal={false}
     />
@@ -348,6 +360,7 @@ exports[`ExpenseForm tests onSubmit Submit Event - Errors should render error fo
       horizontalMargin={0}
       id="date"
       initialVisibleMonth={null}
+      inputIconPosition="before"
       isDayBlocked={[Function]}
       isDayHighlighted={[Function]}
       isOutsideRange={[Function]}
@@ -362,9 +375,11 @@ exports[`ExpenseForm tests onSubmit Submit Event - Errors should render error fo
       onFocusChange={[Function]}
       onNextMonthClick={[Function]}
       onPrevMonthClick={[Function]}
+      openDirection="down"
       orientation="horizontal"
       phrases={
         Object {
+          "calendarLabel": "Calendar",
           "chooseAvailableDate": [Function],
           "clearDate": "Clear Date",
           "closeDatePicker": "Close",
@@ -376,7 +391,7 @@ exports[`ExpenseForm tests onSubmit Submit Event - Errors should render error fo
           "jumpToNextMonth": "Move forward to switch to the next month",
           "jumpToPrevMonth": "Move backward to switch to the previous month",
           "keyboardNavigationInstructions": "Press the down arrow key to interact with the calendar and
-          select a date. Press the question mark key to get the keyboard shortcuts for changing dates.",
+  select a date. Press the question mark key to get the keyboard shortcuts for changing dates.",
           "keyboardShortcuts": "Keyboard Shortcuts",
           "leftArrowRightArrow": "Right and left arrow keys",
           "moveFocusByOneDay": "Move backward (left) and forward (right) by one day",
@@ -402,6 +417,7 @@ exports[`ExpenseForm tests onSubmit Submit Event - Errors should render error fo
       screenReaderInputMessage=""
       showClearDate={false}
       showDefaultInputIcon={false}
+      weekDayFormat="dd"
       withFullScreenPortal={false}
       withPortal={false}
     />
@@ -452,6 +468,7 @@ exports[`ExpenseForm tests onSubmit Submit Event - Errors should render error fo
       horizontalMargin={0}
       id="date"
       initialVisibleMonth={null}
+      inputIconPosition="before"
       isDayBlocked={[Function]}
       isDayHighlighted={[Function]}
       isOutsideRange={[Function]}
@@ -466,9 +483,11 @@ exports[`ExpenseForm tests onSubmit Submit Event - Errors should render error fo
       onFocusChange={[Function]}
       onNextMonthClick={[Function]}
       onPrevMonthClick={[Function]}
+      openDirection="down"
       orientation="horizontal"
       phrases={
         Object {
+          "calendarLabel": "Calendar",
           "chooseAvailableDate": [Function],
           "clearDate": "Clear Date",
           "closeDatePicker": "Close",
@@ -480,7 +499,7 @@ exports[`ExpenseForm tests onSubmit Submit Event - Errors should render error fo
           "jumpToNextMonth": "Move forward to switch to the next month",
           "jumpToPrevMonth": "Move backward to switch to the previous month",
           "keyboardNavigationInstructions": "Press the down arrow key to interact with the calendar and
-          select a date. Press the question mark key to get the keyboard shortcuts for changing dates.",
+  select a date. Press the question mark key to get the keyboard shortcuts for changing dates.",
           "keyboardShortcuts": "Keyboard Shortcuts",
           "leftArrowRightArrow": "Right and left arrow keys",
           "moveFocusByOneDay": "Move backward (left) and forward (right) by one day",
@@ -506,6 +525,7 @@ exports[`ExpenseForm tests onSubmit Submit Event - Errors should render error fo
       screenReaderInputMessage=""
       showClearDate={false}
       showDefaultInputIcon={false}
+      weekDayFormat="dd"
       withFullScreenPortal={false}
       withPortal={false}
     />
@@ -558,6 +578,7 @@ exports[`ExpenseForm tests onSubmit Submit Event - Errors should render error fo
       horizontalMargin={0}
       id="date"
       initialVisibleMonth={null}
+      inputIconPosition="before"
       isDayBlocked={[Function]}
       isDayHighlighted={[Function]}
       isOutsideRange={[Function]}
@@ -572,9 +593,11 @@ exports[`ExpenseForm tests onSubmit Submit Event - Errors should render error fo
       onFocusChange={[Function]}
       onNextMonthClick={[Function]}
       onPrevMonthClick={[Function]}
+      openDirection="down"
       orientation="horizontal"
       phrases={
         Object {
+          "calendarLabel": "Calendar",
           "chooseAvailableDate": [Function],
           "clearDate": "Clear Date",
           "closeDatePicker": "Close",
@@ -586,7 +609,7 @@ exports[`ExpenseForm tests onSubmit Submit Event - Errors should render error fo
           "jumpToNextMonth": "Move forward to switch to the next month",
           "jumpToPrevMonth": "Move backward to switch to the previous month",
           "keyboardNavigationInstructions": "Press the down arrow key to interact with the calendar and
-          select a date. Press the question mark key to get the keyboard shortcuts for changing dates.",
+  select a date. Press the question mark key to get the keyboard shortcuts for changing dates.",
           "keyboardShortcuts": "Keyboard Shortcuts",
           "leftArrowRightArrow": "Right and left arrow keys",
           "moveFocusByOneDay": "Move backward (left) and forward (right) by one day",
@@ -612,6 +635,7 @@ exports[`ExpenseForm tests onSubmit Submit Event - Errors should render error fo
       screenReaderInputMessage=""
       showClearDate={false}
       showDefaultInputIcon={false}
+      weekDayFormat="dd"
       withFullScreenPortal={false}
       withPortal={false}
     />
@@ -660,6 +684,7 @@ exports[`ExpenseForm tests onSubmit Submit Event - Errors should render error fo
       horizontalMargin={0}
       id="date"
       initialVisibleMonth={null}
+      inputIconPosition="before"
       isDayBlocked={[Function]}
       isDayHighlighted={[Function]}
       isOutsideRange={[Function]}
@@ -674,9 +699,11 @@ exports[`ExpenseForm tests onSubmit Submit Event - Errors should render error fo
       onFocusChange={[Function]}
       onNextMonthClick={[Function]}
       onPrevMonthClick={[Function]}
+      openDirection="down"
       orientation="horizontal"
       phrases={
         Object {
+          "calendarLabel": "Calendar",
           "chooseAvailableDate": [Function],
           "clearDate": "Clear Date",
           "closeDatePicker": "Close",
@@ -688,7 +715,7 @@ exports[`ExpenseForm tests onSubmit Submit Event - Errors should render error fo
           "jumpToNextMonth": "Move forward to switch to the next month",
           "jumpToPrevMonth": "Move backward to switch to the previous month",
           "keyboardNavigationInstructions": "Press the down arrow key to interact with the calendar and
-          select a date. Press the question mark key to get the keyboard shortcuts for changing dates.",
+  select a date. Press the question mark key to get the keyboard shortcuts for changing dates.",
           "keyboardShortcuts": "Keyboard Shortcuts",
           "leftArrowRightArrow": "Right and left arrow keys",
           "moveFocusByOneDay": "Move backward (left) and forward (right) by one day",
@@ -714,6 +741,7 @@ exports[`ExpenseForm tests onSubmit Submit Event - Errors should render error fo
       screenReaderInputMessage=""
       showClearDate={false}
       showDefaultInputIcon={false}
+      weekDayFormat="dd"
       withFullScreenPortal={false}
       withPortal={false}
     />
@@ -765,6 +793,7 @@ exports[`ExpenseForm tests onSubmit Submit Event - Errors should render error fo
       horizontalMargin={0}
       id="date"
       initialVisibleMonth={null}
+      inputIconPosition="before"
       isDayBlocked={[Function]}
       isDayHighlighted={[Function]}
       isOutsideRange={[Function]}
@@ -779,9 +808,11 @@ exports[`ExpenseForm tests onSubmit Submit Event - Errors should render error fo
       onFocusChange={[Function]}
       onNextMonthClick={[Function]}
       onPrevMonthClick={[Function]}
+      openDirection="down"
       orientation="horizontal"
       phrases={
         Object {
+          "calendarLabel": "Calendar",
           "chooseAvailableDate": [Function],
           "clearDate": "Clear Date",
           "closeDatePicker": "Close",
@@ -793,7 +824,7 @@ exports[`ExpenseForm tests onSubmit Submit Event - Errors should render error fo
           "jumpToNextMonth": "Move forward to switch to the next month",
           "jumpToPrevMonth": "Move backward to switch to the previous month",
           "keyboardNavigationInstructions": "Press the down arrow key to interact with the calendar and
-          select a date. Press the question mark key to get the keyboard shortcuts for changing dates.",
+  select a date. Press the question mark key to get the keyboard shortcuts for changing dates.",
           "keyboardShortcuts": "Keyboard Shortcuts",
           "leftArrowRightArrow": "Right and left arrow keys",
           "moveFocusByOneDay": "Move backward (left) and forward (right) by one day",
@@ -819,6 +850,7 @@ exports[`ExpenseForm tests onSubmit Submit Event - Errors should render error fo
       screenReaderInputMessage=""
       showClearDate={false}
       showDefaultInputIcon={false}
+      weekDayFormat="dd"
       withFullScreenPortal={false}
       withPortal={false}
     />

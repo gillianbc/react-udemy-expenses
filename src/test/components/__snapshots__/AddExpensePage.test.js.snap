@@ -10,14 +10,3 @@ exports[`AddExpensePage tests Rendering initial page Should render AddExpensePag
   />
 </div>
 `;
-
-exports[`AddExpensePage tests Rendering initial page should render AddExpensePage correctly 1`] = `
-<div>
-  <h1>
-    Add Expense
-  </h1>
-  <ExpenseForm
-    onSubmit={[Function]}
-  />
-</div>
-`;
