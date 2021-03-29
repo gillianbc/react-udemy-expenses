@@ -8,11 +8,9 @@ exports[`The snapshot should match when there is expense data 1`] = `
     >
       Credit Card
     </Link>
-     £
-    4500
-     Created Date:
-     
-    345600000
+    £45.00
+    Created Date: 
+    10th February 1970
     .
   </p>
 </div>
