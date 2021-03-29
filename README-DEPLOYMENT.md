@@ -185,3 +185,5 @@ https://webpack.js.org/configuration/dev-server/#devserverpublicpath-
 
 `publicPath: '/dist/'`
 
+Check: When running the production app on heroku, use the chrome dev tools to view the sources and 
+check that the styles and bundle are now in the dist folder.
