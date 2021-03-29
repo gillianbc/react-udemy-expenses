@@ -17,5 +17,5 @@ export default [{
     description: 'Credit Card',
     note: 'I never pay interest as I clear the whole balance every month',
     amount: 4500,
-    createdAt: moment(0).add(4, 'days').valueOf()
+    createdAt: moment(0).add(40, 'days').valueOf()
 }];
