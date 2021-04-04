@@ -24,7 +24,7 @@ const mapStateToProps = (state) => {
   return {
     expenseCount: expenses.length,
     totalAmount: getExpensesTotal(expenses),
-    word: expenseCount === 1 ? 'expense' : 'expenses'
+    word: expenses.length === 1 ? 'expense' : 'expenses'
   };
 };
 
