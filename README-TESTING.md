@@ -87,6 +87,11 @@ We always want this JSON serialization to happen so we add this to the jest conf
  We then don't need to import toJSON from 'enzyme-to-json' and we can just do:
  `expect(wrapper).toMatchSnapshot();`
 
+We pass in the properties directly to the unconnected component.  e.g. if the real component uses:
+`this.props.expenseCount` and `this.props.totalAmount`, then we pass these in as JS values (hence the curlies are **JS curlies**, not object brackets)
+
+`const wrapper = shallow(<ExpenseSummary expenseCount={ 3525 } totalAmount = { 172818 }/>);`
+
 :scream: EXCEPT... that didn't work, I am getting object object so the serialization is not happening in my snapshots.  Raised issue in the Q&A
 Sec12-Lec120 - resolved by copying in all the tutor's config files and yarn installing.  This puts me back on react 15 and babel 6, but it works OK.
 
@@ -103,7 +108,7 @@ i.e. in the run configuration, use jest options `--config=jest.config.json`
 We need to test components 'unconnected' i.e. with test data that we pass in, not data from the store.  
 The connected component is generally the default export, so we need to export the basic unconnected component too.  
 Remember, we can export as many named components as we want, even if we're exporting a default component.  See ExpenseList.test.js.
-If the component is not connected, then the usual export is just fine for testing. 
+If the component is not connected, then the usual export is just fine for testing.
 
 # Spies
 See notes in ExpenseForm.test.js for details of: 
