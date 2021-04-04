@@ -2,6 +2,7 @@ import React from "react";
 import { connect } from "react-redux";
 import {getVisibleExpenses} from "../selectors/expenses";
 import {getExpensesTotal} from '../selectors/expensesTotal'
+import currencyAmount from "../utilities/currency";
 
 export class ExpenseSummary extends React.Component {
 
@@ -9,7 +10,7 @@ export class ExpenseSummary extends React.Component {
     return (
       <div>
         <h1>Summary</h1>
-        <p>Viewing {this.props.expenseCount} {this.props.word} totalling {this.props.totalAmount}</p>
+        <p>Viewing {this.props.expenseCount} {this.props.word} totalling {currencyAmount(this.props.totalAmount)}</p>
       </div>
     );
   }
