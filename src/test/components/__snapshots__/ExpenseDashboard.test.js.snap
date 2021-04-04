@@ -3,6 +3,10 @@
 exports[`The snapshot should match when there is expense data 1`] = `
 <div>
   <Connect(ExpenseListFilters) />
+  <p>
+    Nothing shown?  Check the date range
+  </p>
+  <Connect(ExpenseSummary) />
   <Connect(ExpenseList) />
 </div>
 `;
