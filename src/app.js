@@ -9,7 +9,7 @@ import { getVisibleExpenses, getAllExpenses } from "./selectors/expenses";
 import { addExpense } from "./actions/expenses";
 import { setTextFilter } from "./actions/filters";
 import "react-dates/lib/css/_datepicker.css";
-
+import moment from "moment";
 if (process.env.NODE_ENV !== "production") {
   console.log("************* Looks like we are in DEVELOPMENT mode!");
 }
@@ -29,7 +29,7 @@ store.dispatch(
     description: "Gas bill",
     note: "Paid late",
     amount: 12200,
-    createdAt: 1615809600000,
+    createdAt: moment().add(-3, 'days').valueOf(),
   })
 );
 store.dispatch(
@@ -37,7 +37,7 @@ store.dispatch(
     description: "Water bill",
     note: "Paid late",
     amount: 999,
-    createdAt: 1615809600000,
+    createdAt: moment().add(-1, 'days').valueOf(),
   })
 );
 store.dispatch(
@@ -45,7 +45,7 @@ store.dispatch(
     description: "Phone bill",
     note: "Paid late",
     amount: 75200,
-    createdAt: 1615809600000,
+    createdAt: moment().add(-2, 'days').valueOf(),
   })
 );
 store.dispatch(
@@ -53,7 +53,7 @@ store.dispatch(
     description: "Mortgage",
     note: "Paid on time",
     amount: 25400,
-    createdAt: 1615809600000,
+    createdAt: moment().add(0, 'days').valueOf(),
   })
 );
 store.dispatch(setTextFilter("gas"));
