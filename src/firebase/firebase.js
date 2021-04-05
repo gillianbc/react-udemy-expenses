@@ -12,8 +12,28 @@ const firebaseConfig = {
 }
 
 firebase.initializeApp(firebaseConfig);
-//Test the connectiion
 
-firebase.database().ref().set({
-    name: 'Gillian BC'
+//Test the connectiion by sending in some arbitrary data.
+// ref() will store the data at the root
+
+const db = firebase.database();
+
+db.ref().set({
+    name: 'Gillian BC',
+    age: 55,
+    location: {
+        building: 'My house',
+        country: 'UK'
+    },
+    isDeveloper: true
 })
+
+db.ref('attributes').set({
+    height: '5 foot  6',
+    weight: '12 stones'
+})
+
+db.ref('age').set(56);
+db.ref('location/country').set('France')
+db.ref('location/street').set('The Lane')
+
