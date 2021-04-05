@@ -10,6 +10,8 @@ import { addExpense } from "./actions/expenses";
 import { setTextFilter } from "./actions/filters";
 import "react-dates/lib/css/_datepicker.css";
 import moment from "moment";
+import './firebase/firebase'
+
 if (process.env.NODE_ENV !== "production") {
   console.log("************* Looks like we are in DEVELOPMENT mode!");
 }
