@@ -19,14 +19,14 @@ On the rules page, initially we switch of authentication so that we can play.
   }
 }
 ```
-Back at the project overview, we need to connect Firebase tou our webapp.
+Back at the project overview, we need to connect Firebase to our webapp.
 
 `npm install firebase`
 
 The config is provided from the firebase overview page https://console.firebase.google.com/project/expensify-d8ec1/overview
 when you `add firebase to your webapp`
 
-For now, we import firebase.js in app.js so we can check it is connecting correctly.
+For now, we import firebase.js in app.js so we can check it is connecting correctly when we run the expensify app.
 ```
 //Test the connectiion by sending in some arbitrary data.
 // ref() will store the data at the root

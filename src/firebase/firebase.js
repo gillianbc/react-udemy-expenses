@@ -26,14 +26,18 @@ db.ref().set({
         country: 'UK'
     },
     isDeveloper: true
+}).then( () => {
+    console.log('FIREBASE data saved')
+}).catch( (e) => {
+    console.log('FIREBASE save rejected', e)
 })
 
-db.ref('attributes').set({
+/*db.ref('attributes').set({
     height: '5 foot  6',
     weight: '12 stones'
 })
 
 db.ref('age').set(56);
 db.ref('location/country').set('France')
-db.ref('location/street').set('The Lane')
+db.ref('location/street').set('The Lane')*/
 
