@@ -31,6 +31,18 @@ db.ref().set({
 }).catch( (e) => {
     console.log('FIREBASE save rejected', e)
 })
+//Using set to remove data
+db.ref('isDeveloper').set(null);
+
+
+/*const devref = firebase.database().ref('isDeveloper');
+devref.remove()
+    .then(() => {
+        console.log("FIREBASE Remove succeeded.")
+    })
+    .catch((error) => {
+        console.log("FIREBASE Remove failed: " + error.message)
+    });*/
 
 /*db.ref('attributes').set({
     height: '5 foot  6',
