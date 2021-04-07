@@ -24,8 +24,7 @@ promise.then(data => {
 
 console.log('Two')
 // Alternative to catch syntax - a second callback function arg
-promise.then(data => {
-    console.log('B-', data)
-}, error => {
-    console.log('C ', error)
+promise.then(
+    data => {console.log('B-', data)},
+    error => {console.log('C ', error)
 })
