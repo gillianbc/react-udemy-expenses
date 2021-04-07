@@ -42,6 +42,8 @@ firebase.database().ref().set({
 ```
 You can see the data here:  https://console.firebase.google.com/project/expensify-d8ec1/database/expensify-d8ec1-default-rtdb/data
 
+Documentation here:  https://firebase.google.com/docs/reference/js/firebase.database.Reference
+
 set() does not need an object, though an object does make more sense
 It's a blunt instrument - very easy to overwrite EVERYTHING at the root.
 So, use a named reference point e.g. the age ref :

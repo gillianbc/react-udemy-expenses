@@ -32,8 +32,29 @@ db.ref().set({
     console.log('FIREBASE save rejected', e)
 })
 //Using set to remove data
-db.ref('isDeveloper').set(null);
+//db.ref('isDeveloper').set(null);
 
+// Has to be an object when updating
+// Update can add new refs and remove existing refs, but be careful if you update a ref that has
+// children as it will replace that entire ref e.g. location in this example
+/*db.ref().update({
+    name: 'Mrs Bladen-Clark',
+    age: 21,
+    job: 'Software Developer',
+    isDeveloper: null,
+    location: {
+        country: 'Greece'
+    }
+})*/
+// To update only the country within location, we use a path, but we have to enclose the key in ''
+// to escape the / in the path
+db.ref().update({
+    name: 'Mrs Bladen-Clark',
+    age: 21,
+    job: 'Software Developer',
+    isDeveloper: null,
+    'location/country': 'Greece'
+})
 
 /*const devref = firebase.database().ref('isDeveloper');
 devref.remove()
