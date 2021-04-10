@@ -31,6 +31,42 @@ db.ref().set({
 }).catch( (e) => {
     console.log('FIREBASE save rejected', e)
 })
+
+// Read data once - root data i.e. everything
+db.ref().get().then(function(rootSnapshot) {
+    if (rootSnapshot.exists()) {
+        console.log('ROOT', rootSnapshot.val());
+    }
+    else {
+        console.log("No data available");
+    }
+}).catch(function(error) {
+    console.error(error);
+});
+
+// Read data when it or it's children change
+let addressWatch = db.ref('location');
+addressWatch.on('value', (snapshot) => {
+    console.log('ADDRESS', snapshot.val());
+});
+
+db.ref().update({'location/country': 'Greece'})
+    .then(() => {
+        db.ref().update({'location/street': 'Park Lane'})
+    })
+    .then(() => {
+        db.ref().update({'location/phone': '1727771'})
+    })
+    .then(() => {
+        //Turn off the subscription
+        addressWatch.off()
+    })
+    .then(() => {
+        //We shouldn't see a log of this change
+        db.ref().update({'location/street': 'Golders Lane'})
+    })
+
+
 //Using set to remove data
 //db.ref('isDeveloper').set(null);
 
@@ -48,13 +84,13 @@ db.ref().set({
 })*/
 // To update only the country within location, we use a path, but we have to enclose the key in ''
 // to escape the / in the path
-db.ref().update({
+/*db.ref().update({
     name: 'Mrs Bladen-Clark',
     age: 21,
     job: 'Software Developer',
     isDeveloper: null,
     'location/country': 'Greece'
-})
+})*/
 
 /*const devref = firebase.database().ref('isDeveloper');
 devref.remove()
