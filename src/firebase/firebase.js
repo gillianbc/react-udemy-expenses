@@ -13,12 +13,46 @@ const firebaseConfig = {
 
 firebase.initializeApp(firebaseConfig);
 
-//Test the connectiion by sending in some arbitrary data.
-// ref() will store the data at the root
-
 const db = firebase.database();
 
-db.ref().set({
+// Firebase can't handle arrays.  Instead, we use push.  Firebase will create a unique property name
+// for each object that we push.  We can then use that property for subsequent fetch / update /delete
+
+const expenses = [
+    {
+        description: 'apple',
+        amount: 137,
+        note: 'Green and juicy',
+        createdAt: 182918
+    },
+    {
+        description: 'banana',
+        amount: 1327,
+        note: 'Yellow',
+        createdAt: 182917
+    },
+    {
+        description: 'pear',
+        amount: 177,
+        note: 'Green and sweet',
+        createdAt: 182919
+    }
+]
+expenses.map((expense) => {
+
+    db.ref('expense').push(expense)
+        .then(() => {
+            console.log('PUSHED expense', result)
+        })
+        .catch((err) => {
+            console.log('PUSH error', err)
+        })
+})
+
+
+//Test the connectiion by sending in some arbitrary data.
+// ref() will store the data at the root
+/*db.ref().set({
     name: 'Gillian BC',
     age: 55,
     location: {
@@ -30,10 +64,10 @@ db.ref().set({
     console.log('FIREBASE data saved')
 }).catch( (e) => {
     console.log('FIREBASE save rejected', e)
-})
+})*/
 
 // Read data once - root data i.e. everything
-db.ref().get().then(function(rootSnapshot) {
+/*db.ref().get().then(function(rootSnapshot) {
     if (rootSnapshot.exists()) {
         console.log('ROOT', rootSnapshot.val());
     }
@@ -42,15 +76,15 @@ db.ref().get().then(function(rootSnapshot) {
     }
 }).catch(function(error) {
     console.error(error);
-});
+});*/
 
 // Read data when it or it's children change
-let addressWatch = db.ref('location');
+/*let addressWatch = db.ref('location');
 addressWatch.on('value', (snapshot) => {
     console.log('ADDRESS', snapshot.val());
-});
+});*/
 
-db.ref().update({'location/country': 'Greece'})
+/*db.ref().update({'location/country': 'Greece'})
     .then(() => {
         db.ref().update({'location/street': 'Park Lane'})
     })
@@ -64,7 +98,7 @@ db.ref().update({'location/country': 'Greece'})
     .then(() => {
         //We shouldn't see a log of this change
         db.ref().update({'location/street': 'Golders Lane'})
-    })
+    })*/
 
 
 //Using set to remove data
