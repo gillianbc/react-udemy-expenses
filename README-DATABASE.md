@@ -62,5 +62,5 @@ unique keys for us.
 
 Get the key by fetching the array, using forEach and accessing the `key` of each item.
 
-
+See `firebase.js` for loads more examples.
 

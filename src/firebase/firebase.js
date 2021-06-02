@@ -15,8 +15,10 @@ firebase.initializeApp(firebaseConfig);
 
 const db = firebase.database();
 
-// Firebase can't handle arrays.  Instead, we use push.  Firebase will create a unique property name
-// for each object that we push.  We can then use that property for subsequent fetch / update /delete
+// Firebase can't handle arrays.  Instead, we use push.
+// Firebase will create a unique property name
+// for each object that we push.  We can then use that property for
+// subsequent fetch / update /delete
 
 const expenses = [
     {
@@ -38,6 +40,7 @@ const expenses = [
         createdAt: 182919
     }
 ]
+
 // Push individual elements of an array
 expenses.map((expense) => {
     db.ref('expenses').push(expense)
@@ -49,10 +52,16 @@ expenses.map((expense) => {
         })
 })
 
+//Subscription that fires when a child element is removed
+db.ref('expenses').on('child_removed', snapshot => {
+   // Log the key (parent element), log the value at the 'expenses' location i.e. an expense
+    console.log('REMOVED', snapshot.key, snapshot.val())
+})
 
 // Push an array of expenses - firebase will create an index for each, starting at 0
 // The indexes are not helpful to us - we need the expense id to be our key, so we won't
 // use this method for pushing multiple items
+/*
 db.ref('badexpenses').push(expenses)
     .then((result) => {
         console.log('PUSHED expenses', result)
@@ -61,6 +70,9 @@ db.ref('badexpenses').push(expenses)
         console.log('PUSH error', err)
     })
 
+// Get the key of each expense on firebase
+// Fetch the expenses, use forEach to loop thro the children,
+// use the child's key as the id
 const processData = () => {
     return snapshot => {
         console.log('PROCESSING', snapshot.val())
@@ -81,17 +93,13 @@ const processData = () => {
 db.ref('expenses')
     .once('value')
     .then(processData())
-// Get the key of each expense on firebase
-// Fetch the expenses, use forEach to loop thro the children,
-// use the child's key as the id
-
 
 // Subscription to monitor changes to remote expenses
+// 'value' is the eventType - might have been better named as 'valueChanged'
 db.ref('expenses')
     .on('value',  processData())
 
-
-
+*/
 
 //Test the connectiion by sending in some arbitrary data.
 // ref() will store the data at the root
