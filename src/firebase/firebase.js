@@ -38,16 +38,42 @@ const expenses = [
         createdAt: 182919
     }
 ]
+// Push individual elements of an array
 expenses.map((expense) => {
-
-    db.ref('expense').push(expense)
-        .then(() => {
+    db.ref('expenses').push(expense)
+        .then((result) => {
             console.log('PUSHED expense', result)
         })
         .catch((err) => {
             console.log('PUSH error', err)
         })
 })
+
+
+// Push an array of expenses - firebase will create an index for each, starting at 0
+// The indexes are not helpful to us - we need the expense id to be our key, so we won't
+// use this method for pushing multiple items
+db.ref('badexpenses').push(expenses)
+    .then((result) => {
+        console.log('PUSHED expenses', result)
+    })
+    .catch((err) => {
+        console.log('PUSH error', err)
+    })
+
+// Get the key of each expense on firebase
+db.ref('expenses')
+    .once('value')
+    .then(snapshot => {
+        const retrievedExpenses = [];
+        snapshot.forEach( childSnapshot => {
+            retrievedExpenses.push({
+                id: childSnapshot.key,
+                ...childSnapshot.val()
+            })
+        })
+        console.log('RETRIEVED EXPENSES:', retrievedExpenses)
+    })
 
 
 //Test the connectiion by sending in some arbitrary data.
