@@ -61,19 +61,36 @@ db.ref('badexpenses').push(expenses)
         console.log('PUSH error', err)
     })
 
-// Get the key of each expense on firebase
-db.ref('expenses')
-    .once('value')
-    .then(snapshot => {
+const processData = () => {
+    return snapshot => {
+        console.log('PROCESSING', snapshot.val())
         const retrievedExpenses = [];
-        snapshot.forEach( childSnapshot => {
+        snapshot.forEach(childSnapshot => {
+            console.log('PROCESSING ITEM')
             retrievedExpenses.push({
                 id: childSnapshot.key,
                 ...childSnapshot.val()
             })
         })
         console.log('RETRIEVED EXPENSES:', retrievedExpenses)
-    })
+    };
+}
+
+// Get keys created by firebase
+// store results in a new array
+db.ref('expenses')
+    .once('value')
+    .then(processData())
+// Get the key of each expense on firebase
+// Fetch the expenses, use forEach to loop thro the children,
+// use the child's key as the id
+
+
+// Subscription to monitor changes to remote expenses
+db.ref('expenses')
+    .on('value',  processData())
+
+
 
 
 //Test the connectiion by sending in some arbitrary data.

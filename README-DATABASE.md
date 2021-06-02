@@ -55,8 +55,12 @@ db.ref('location/street').set('The Lane') // insert - ref does not exist
 
 ## Arrays
 Firebase will use a 0 based index for arrays of objects.  Not much use to us, we want ids.
-So we push individual objects to a reference and let firebase create unique keys for us.
+So we push individual objects to a reference and let firebase create 
+unique keys for us.
 
 ![image](https://user-images.githubusercontent.com/20191662/120462948-50509800-c393-11eb-9957-0ba7137da140.png)
+
+Get the key by fetching the array, using forEach and accessing the `key` of each item.
+
 
 
