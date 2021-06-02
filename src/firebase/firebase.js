@@ -15,8 +15,10 @@ firebase.initializeApp(firebaseConfig);
 
 const db = firebase.database();
 
-// Firebase can't handle arrays.  Instead, we use push.  Firebase will create a unique property name
-// for each object that we push.  We can then use that property for subsequent fetch / update /delete
+// Firebase can't handle arrays.  Instead, we use push.
+// Firebase will create a unique property name
+// for each object that we push.  We can then use that property for
+// subsequent fetch / update /delete
 
 const expenses = [
     {
@@ -38,10 +40,11 @@ const expenses = [
         createdAt: 182919
     }
 ]
-expenses.map((expense) => {
 
-    db.ref('expense').push(expense)
-        .then(() => {
+// Push individual elements of an array
+expenses.map((expense) => {
+    db.ref('expenses').push(expense)
+        .then((result) => {
             console.log('PUSHED expense', result)
         })
         .catch((err) => {
@@ -49,6 +52,73 @@ expenses.map((expense) => {
         })
 })
 
+//Subscription that fires when a child element is removed
+db.ref('expenses').on('child_removed', snapshot => {
+   // Log the key (parent element), log the value at the 'expenses' location i.e. an expense
+    console.log('REMOVED', snapshot.key, snapshot.val())
+})
+
+//Subscription that fires when a child element is changed
+db.ref('expenses').on('child_changed', snapshot => {
+    // Log the key (parent element), log the value at the 'expenses' location i.e. an expense
+    console.log('CHANGED', snapshot.key, snapshot.val())
+})
+
+//Subscription that fires when a child element is added
+db.ref('expenses').on('child_added', snapshot => {
+    // Log the key (parent element), log the value at the 'expenses' location i.e. an expense
+    console.log('ADDED', snapshot.key, snapshot.val())
+})
+
+db.ref('expenses').push(expenses[0])
+    .then((result) => {
+        console.log('PUSHED expense again', result)
+    })
+    .catch((err) => {
+        console.log('PUSH error', err)
+    })
+// Push an array of expenses - firebase will create an index for each, starting at 0
+// The indexes are not helpful to us - we need the expense id to be our key, so we won't
+// use this method for pushing multiple items
+/*
+db.ref('badexpenses').push(expenses)
+    .then((result) => {
+        console.log('PUSHED expenses', result)
+    })
+    .catch((err) => {
+        console.log('PUSH error', err)
+    })
+
+// Get the key of each expense on firebase
+// Fetch the expenses, use forEach to loop thro the children,
+// use the child's key as the id
+const processData = () => {
+    return snapshot => {
+        console.log('PROCESSING', snapshot.val())
+        const retrievedExpenses = [];
+        snapshot.forEach(childSnapshot => {
+            console.log('PROCESSING ITEM')
+            retrievedExpenses.push({
+                id: childSnapshot.key,
+                ...childSnapshot.val()
+            })
+        })
+        console.log('RETRIEVED EXPENSES:', retrievedExpenses)
+    };
+}
+
+// Get keys created by firebase
+// store results in a new array
+db.ref('expenses')
+    .once('value')
+    .then(processData())
+
+// Subscription to monitor changes to remote expenses
+// 'value' is the eventType - might have been better named as 'valueChanged'
+db.ref('expenses')
+    .on('value',  processData())
+
+*/
 
 //Test the connectiion by sending in some arbitrary data.
 // ref() will store the data at the root
