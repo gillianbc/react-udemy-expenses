@@ -58,6 +58,25 @@ db.ref('expenses').on('child_removed', snapshot => {
     console.log('REMOVED', snapshot.key, snapshot.val())
 })
 
+//Subscription that fires when a child element is changed
+db.ref('expenses').on('child_changed', snapshot => {
+    // Log the key (parent element), log the value at the 'expenses' location i.e. an expense
+    console.log('CHANGED', snapshot.key, snapshot.val())
+})
+
+//Subscription that fires when a child element is added
+db.ref('expenses').on('child_added', snapshot => {
+    // Log the key (parent element), log the value at the 'expenses' location i.e. an expense
+    console.log('ADDED', snapshot.key, snapshot.val())
+})
+
+db.ref('expenses').push(expenses[0])
+    .then((result) => {
+        console.log('PUSHED expense again', result)
+    })
+    .catch((err) => {
+        console.log('PUSH error', err)
+    })
 // Push an array of expenses - firebase will create an index for each, starting at 0
 // The indexes are not helpful to us - we need the expense id to be our key, so we won't
 // use this method for pushing multiple items
