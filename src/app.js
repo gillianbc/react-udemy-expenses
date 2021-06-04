@@ -26,38 +26,42 @@ const allExpenses = () => {
   return getAllExpenses(state.expenses, state.filters);
 };
 
-store.dispatch(
-  addExpense({
-    description: "Gas bill",
-    note: "Paid late",
-    amount: 12200,
-    createdAt: moment().add(-3, 'days').valueOf(),
-  })
-);
-store.dispatch(
-  addExpense({
-    description: "Water bill",
-    note: "Paid late",
-    amount: 999,
-    createdAt: moment().add(-1, 'days').valueOf(),
-  })
-);
-store.dispatch(
-  addExpense({
-    description: "Phone bill",
-    note: "Paid late",
-    amount: 75200,
-    createdAt: moment().add(-2, 'days').valueOf(),
-  })
-);
-store.dispatch(
-  addExpense({
-    description: "Mortgage",
-    note: "Paid on time",
-    amount: 25400,
-    createdAt: moment().add(0, 'days').valueOf(),
-  })
-);
+const addSampleData = () => {
+    store.dispatch(
+        addExpense({
+            description: "Gas bill",
+            note: "Paid late",
+            amount: 12200,
+            createdAt: moment().add(-3, 'days').valueOf(),
+        })
+    );
+    store.dispatch(
+        addExpense({
+            description: "Water bill",
+            note: "Paid late",
+            amount: 999,
+            createdAt: moment().add(-1, 'days').valueOf(),
+        })
+    );
+    store.dispatch(
+        addExpense({
+            description: "Phone bill",
+            note: "Paid late",
+            amount: 75200,
+            createdAt: moment().add(-2, 'days').valueOf(),
+        })
+    );
+    store.dispatch(
+        addExpense({
+            description: "Mortgage",
+            note: "Paid on time",
+            amount: 25400,
+            createdAt: moment().add(0, 'days').valueOf(),
+        })
+    );
+}
+
+// addSampleData();
 store.dispatch(setTextFilter("gas"));
 
 setTimeout(() => {
@@ -70,6 +74,8 @@ setTimeout(() => {
 
 // console.log(visibleExpenses())
 // console.log(allExpenses())
+
+
 
 const jsx = (
   <Provider store={store}>
