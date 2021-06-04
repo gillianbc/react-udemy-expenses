@@ -2,11 +2,11 @@
 import React from "react";
 import ExpenseForm from "./ExpenseForm";
 import { connect } from "react-redux";
-import { addExpense } from "../actions/expenses";
+import { startAddExpense } from "../actions/expenses";
 
 export class AddExpensePage extends React.Component {
   onSubmit = (expense) => {
-    this.props.addExpense(expense);
+    this.props.startAddExpense(expense);
     /* This is how we redirect */
     this.props.history.push("/");
   };
@@ -26,7 +26,7 @@ export class AddExpensePage extends React.Component {
 // that we can spy on
 // It's cleaner as it means that the AddExpensePage doesn't need to concern itself with dispatch
 const mapDispatchToProps = (dispatch) => ({
-  addExpense: (expense) => dispatch(addExpense(expense)),
+  startAddExpense: (expense) => dispatch(startAddExpense(expense))
 });
 const ConnectedAddExpensePage = connect(
   undefined,
