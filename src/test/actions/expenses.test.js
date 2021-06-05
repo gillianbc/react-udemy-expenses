@@ -1,7 +1,7 @@
 import { addExpense } from '../../actions/expenses'
-
-it('should produce an add object with defaults', () => {
-    const result = addExpense()
+import expenses from '../resources/expenses'
+it.skip('should produce an add object with defaults', () => {
+    const result = startAddExpense()()
     console.log(result)
     expect(result).toEqual({
         type: 'ADD_EXPENSE',
@@ -16,12 +16,7 @@ it('should produce an add object with defaults', () => {
 })
 
 it('should produce an add object with given values', () => {
-    const expense = {
-        description: 'banana',
-        note: 'note',
-        amount: 1891,
-        createdAt: 172617
-    }
+    const expense = expenses[2]
     const result = addExpense(expense)
     console.log(result)
     expect(result).toEqual({
