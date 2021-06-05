@@ -38,7 +38,8 @@ export const startAddExpense = (expenseData = {}) => {
         // create a const for the values we want to push
         const expense = { description, note, amount, createdAt }
         console.log("PUSHING IN THUNK")
-        db.ref('expenses').push(expense)
+        // The 'return' here is to aid testing
+        return db.ref('expenses').push(expense)
             .then((result) => {
                 dispatch(addExpense(
                     {
