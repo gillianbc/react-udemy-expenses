@@ -152,7 +152,8 @@ To get heroku to use webpack, we need another `package.json` script that runs ou
 
 `"heroku-postbuild": "npm run build-prod"`
 
-Working with my local git and branches is just the same as before.  To update heroku, use the master branch:
+Working with my local git and branches is just the same as before.  
+To update heroku, make sure you are on the local **master branch**:
 
 `git push heroku master`
 
@@ -164,7 +165,7 @@ Your package.lock.json must be in sync with your package.json.
 If you have issues, do `heroku logs`
 
 # Dev and Production Dependencies
-Heroku will ignore dev dependencies, so make sure things like ensyme and jest are in the dev dependencies section
+Heroku will ignore dev dependencies, so make sure things like enzyme and jest are in the dev dependencies section
 We no longer need live-server as we have webpack's dev-server for dev and our express server for production. 
 (Removed live-server in branch 137)
 
