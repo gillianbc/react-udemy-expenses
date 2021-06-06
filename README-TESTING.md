@@ -166,3 +166,17 @@ Use the above to set up a Jest template and then you'll be able to run individua
 
 :heart: IntelliJ also shows a little camera icon next to each test that has a snapshot - this is REALLY useful for checking
 what's been rendered.  If you have to laboriously page through to find things, you will not check properly. 
+
+# Testing when Firebase DB In Use
+When we introduced our think middleware function that interacts with the firebase database 
+(see `src/actions/expenses.js`), tests had to change as we're not simply returning a generated action.
+
+We now need to check that:
+
+- we're sending the correct data to the firebase database
+- we're generating the correct action for our app's redux store
+
+We need a mock store:   https://www.npmjs.com/package/redux-mock-store
+
+
+
