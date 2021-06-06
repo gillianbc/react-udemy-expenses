@@ -1,4 +1,5 @@
 const path = require("path");
+const webpack = require("webpack")
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 // set NODE_ENV to development if undefined
 process.env.NODE_ENV = process.env.NODE_ENV || 'development'

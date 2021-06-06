@@ -203,4 +203,13 @@ Unset a var:
 
 `heroku config: unset KEY`
 
-The heroku app will restart
+The heroku app will restart.  See it here:  https://react-expensify-gbc.herokuapp.com/
+
+# Issues
+If it fails to deploy due to mismatch between package.lock.json and package.json, then do:
+npm ls
+npm install
+and that should synch the package versions
+
+If it can't run the `npm run build-prod`, then try it locally and see what's causing the error.
+
