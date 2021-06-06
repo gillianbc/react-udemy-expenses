@@ -177,6 +177,33 @@ We now need to check that:
 - we're generating the correct action for our app's redux store
 
 We need a mock store:   https://www.npmjs.com/package/redux-mock-store
+Note:  there is a firebase mock that we didn't use in the course, we used a test database.
 
+For the tests to use a test database, we have:
+
+- set the NODE_ENV to test via the test script in package.json i.e. `"test": "cross-env NODE_ENV=test jest --config=jest.config.json",`
+- in jest.config.json we have
+```
+"setupFiles": [
+    "<rootDir>/src/setupTests.js"
+  ]
+```
+- in `setupTests.js` we tell it to load the `.env.test` file:
+  `Dotenv.config({ path: '.env.test'});`
+  
+- in `.env.test` we define the environment variables for the firebase test config e.g. FIREBASE_DATABASE_URL
+- in `firebase.js`, we configure the firebase database connection from the environment variables
+
+For running in development and production, we use webpack variables, so in webpack.common.js,
+set NODE_ENV to development if undefined.
+if NODE_ENV is development, we load `.env.development`
+The webpack process env variables are then defined using webpack.DefinePlugin and set to the process.env 
+variables we just loaded (I think, bit woolly on this)
+(NODE_ENV will be production on heroku)
+
+
+# Issues
+Lec 155 - my setupTests.js is not active.  We need this to run to load in the `.env.test` and thus the config details of the test firebase db
+It's because I had two setupTests.js and I was not looking at the one under src
 
 
