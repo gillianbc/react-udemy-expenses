@@ -187,3 +187,19 @@ https://webpack.js.org/configuration/dev-server/#devserverpublicpath-
 
 Check: When running the production app on heroku, use the chrome dev tools to view the sources and 
 check that the styles and bundle are now in the dist folder.
+
+# Heroku Environment Variables
+We want all our production env vars to be the same as in .env.development.  We use the heroku cli (locally) to set them.
+Print out heroku env vars:
+
+`heroku config`
+
+Set a var:
+
+`heroku config:set KEY=VALUE`
+
+Unset a var:
+
+`heroku config: unset KEY`
+
+The heroku app will restart

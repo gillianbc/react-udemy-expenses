@@ -199,7 +199,7 @@ set NODE_ENV to development if undefined.
 if NODE_ENV is development, we load `.env.development`
 The webpack process env variables are then defined using webpack.DefinePlugin and set to the process.env 
 variables we just loaded (I think, bit woolly on this)
-(NODE_ENV will be production on heroku)
+(NODE_ENV will be production on heroku - and we need to use the heroku cli to set values)
 
 
 # Issues
